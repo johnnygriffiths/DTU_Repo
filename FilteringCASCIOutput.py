@@ -105,6 +105,3 @@ CASCISimEnergies = CASCISimData(FilePath, SkipRows)
 result = CleanData(CASCIDesiredEnergies, CASCISimEnergies)
 df = pd.DataFrame(result)
 print(df)
-#TODO created a filter that Theo wanted to remove the spins that are non-zero
-
-
