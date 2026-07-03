@@ -7,36 +7,24 @@ pd.set_option('display.max_rows', None)
 
 # RegEx, creates markers/patterns to get only specific data frfom the files 
 import re
-            
-def ReadSimExcEnergiesFunc(FilePath: str, RootCount: int) -> int:
-    
-    # The line starts with Excitation'
-    pattern = r'@ Excitation energy :'
-    # Open the filename within the path
-    with open(FilePath) as f:
-        # Enumerate gives the index of that line
-        for linecounter,line in enumerate(f):
-            # When the pattern is found within file
-            if re.match(pattern, line):
-                # Return index of that line
-                return linecounter
-            
-    
-def CASCISimData(FilePath: str,SkipRows: int) -> list[dict]:
+                     
+def CASCISimData(FilePath: str) -> pd.DataFrame:
     """
-    Simulation data
+    Parse values for excitatoin energies and total oscillator strength from each excited state 
+    generated in output file by Dalton
     """
     #Stores each line in output file
     with open(FilePath,"r") as f:
         TableLines = f.readlines()
-    #Stores the lines after the amount specified by skiprows
-    TableLines = TableLines[SkipRows:]
+
+
     # Obtain from each line the state number, the energy (Eh) and the excitation energy (eV)
     ExcELines = [Line for Line in TableLines if "@ Excitation energy :" in Line]
     OscStrLines =  [Line for Line in TableLines if "@ Total oscillator strength " in Line ]
     ExcELines = [elem.replace("@", "") for elem in ExcELines]
     OscStrLines = [elem.replace("@", "") for elem in OscStrLines]
- 
+    
+    #Get only the actual numbers
     EnergPattern = re.compile(
         r"\s+(?P<E>\d[.]\d{7,8})"
         )
@@ -56,19 +44,23 @@ def CASCISimData(FilePath: str,SkipRows: int) -> list[dict]:
         if match:
             OscStrData.append(float(match.group('OscStr'))
             )
-    SimData = pd.DataFrame({"Excitation energy (a.u)": EnergData,"Total oscillator strength": OscStrData})
+    
+    #Store in dataframe
+    SimDataDF = pd.DataFrame({"Excitation energy (a.u)": EnergData,"Total oscillator strength": OscStrData})
 
-    return SimData
+    return SimDataDF
 
 
 FilePath = "./CAS46_lih.out"
+
+CASCISimEnergiesDF = CASCISimData(FilePath)#, SkipRows)
+
 # Number of roots set in Dalton
 # Also corresponds to number of states reached
 RootCount = 50
+ExcitedStatesCount = np.arange(1,RootCount+1,1)
 
-SkipRows = ReadSimExcEnergiesFunc(FilePath, RootCount)
-#print(SkipRows)
-CASCISimEnergies = CASCISimData(FilePath, SkipRows)
-CASCISimEnergiesDF = pd.DataFrame(CASCISimEnergies)
-CASCISimEnergiesDF.index +=1
+CASCISimEnergiesDF["Excited state no."] = ExcitedStatesCount
+# Set the column to be the first one
+CASCISimEnergiesDF = CASCISimEnergiesDF[ ["Excited state no."] + [col for col in CASCISimEnergiesDF.columns if col != "Excited state no."] ]
 print(CASCISimEnergiesDF)
