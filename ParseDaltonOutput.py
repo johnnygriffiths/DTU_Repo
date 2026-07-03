@@ -54,13 +54,6 @@ def CASCISimData(FilePath: str) -> pd.DataFrame:
 FilePath = "./CAS46_lih.out"
 
 CASCISimEnergiesDF = CASCISimData(FilePath)#, SkipRows)
-
-# Number of roots set in Dalton
-# Also corresponds to number of states reached
-RootCount = 50
-ExcitedStatesCount = np.arange(1,RootCount+1,1)
-
-CASCISimEnergiesDF["Excited state no."] = ExcitedStatesCount
-# Set the column to be the first one
-CASCISimEnergiesDF = CASCISimEnergiesDF[ ["Excited state no."] + [col for col in CASCISimEnergiesDF.columns if col != "Excited state no."] ]
+# The index count is the same as the root set in the Dalton file, i.e the number of excited states
+CASCISimEnergiesDF.index +=1
 print(CASCISimEnergiesDF)
