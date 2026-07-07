@@ -1,0 +1,2139 @@
+
+
+     ************************************************************************
+     *************** Dalton - An Electronic Structure Program ***************
+     ************************************************************************
+
+    This is output from DALTON release Dalton2024.0-dev (2024)
+         ( Web site: http://daltonprogram.org )
+
+   ----------------------------------------------------------------------------
+
+    NOTE:
+     
+    Dalton is an experimental code for the evaluation of molecular
+    properties using (MC)SCF, DFT, CI, and CC wave functions.
+    The authors accept no responsibility for the performance of
+    the code or for the correctness of the results.
+     
+    The code (in whole or part) is provided under a licence and
+    is not to be reproduced for further distribution without
+    the written permission of the authors or their representatives.
+     
+    See the home page "http://daltonprogram.org" for further information.
+     
+    If results obtained with this code are published,
+    the appropriate citations would be both of:
+     
+       K. Aidas, C. Angeli, K. L. Bak, V. Bakken,
+       R. Bast, L. Boman, O. Christiansen, R. Cimiraglia,
+       S. Coriani, P. Dahle, E. K. Dalskov, U. Ekstroem,
+       T. Enevoldsen, J. J. Eriksen, P. Ettenhuber, B. Fernandez,
+       L. Ferrighi, H. Fliegl, L. Frediani, K. Hald, A. Halkier,
+       C. Haettig, H. Heiberg, T. Helgaker, A. C. Hennum,
+       H. Hettema, E. Hjertenaes, S. Hoest, I.-M. Hoeyvik,
+       M. F. Iozzi, B. Jansik, H. J. Aa. Jensen, D. Jonsson,
+       P. Joergensen, J. Kauczor, S. Kirpekar,
+       T. Kjaergaard, W. Klopper, S. Knecht, R. Kobayashi, H. Koch,
+       J. Kongsted, A. Krapp, K. Kristensen, A. Ligabue,
+       O. B. Lutnaes, J. I. Melo, K. V. Mikkelsen, R. H. Myhre,
+       C. Neiss, C. B. Nielsen, P. Norman, J. Olsen,
+       J. M. H. Olsen, A. Osted, M. J. Packer, F. Pawlowski,
+       T. B. Pedersen, P. F. Provasi, S. Reine, Z. Rinkevicius,
+       T. A. Ruden, K. Ruud, V. Rybkin, P. Salek, C. C. M. Samson,
+       A. Sanchez de Meras, T. Saue, S. P. A. Sauer,
+       B. Schimmelpfennig, K. Sneskov, A. H. Steindal,
+       K. O. Sylvester-Hvid, P. R. Taylor, A. M. Teale,
+       E. I. Tellgren, D. P. Tew, A. J. Thorvaldsen, L. Thoegersen,
+       O. Vahtras, M. A. Watson, D. J. D. Wilson, M. Ziolkowski
+       and H. Agren,
+       "The Dalton quantum chemistry program system",
+       WIREs Comput. Mol. Sci. 2014, 4:269-284 (doi: 10.1002/wcms.1172)
+     
+    and
+     
+       Dalton, a molecular electronic structure program,
+       Release Dalton2024.0-dev (2024), see http://daltonprogram.org
+   ----------------------------------------------------------------------------
+
+    Authors in alphabetical order (Major contribution(s) in parenthesis):
+
+  Kestutis Aidas,              Vilnius University,        Lithuania   (QM/MM)
+  Celestino Angeli,            University of Ferrara,     Italy       (NEVPT2)
+  Juan J. Aucar,               Northeast National UniversiArgentina   (LRESC, Relativistic Effects on EFG)
+  Keld L. Bak,                 UNI-C,                     Denmark     (AOSOPPA, non-adiabatic coupling, magnetic properties)
+  Vebjoern Bakken,             University of Oslo,        Norway      (DALTON; geometry optimizer, symmetry detection)
+  Radovan Bast,                UiT The Arctic U. of NorwayNorway      (DALTON installation and execution frameworks)
+  Pablo Baudin,                University of Valencia,    Spain       (Cholesky excitation energies)
+  Linus Boman,                 NTNU,                      Norway      (Cholesky decomposition and subsystems)
+  Bruno N. Cabral Tenorio,     Technical Univ. of Denmark,Denmark     (Lanczos-based CC methods)
+  Ove Christiansen,            Aarhus University,         Denmark     (CC module)
+  Renzo Cimiraglia,            University of Ferrara,     Italy       (NEVPT2)
+  Sonia Coriani,               Technical Univ. of Denmark,Denmark     (CC and RESPONS modules)
+  Janusz Cukras,               University of Warsaw,      Poland      (MChD in RESPONS)
+  Paal Dahle,                  University of Oslo,        Norway      (Parallelization)
+  Erik K. Dalskov,             UNI-C,                     Denmark     (SOPPA)
+  Thomas Enevoldsen,           Univ. of Southern Denmark, Denmark     (SOPPA)
+  Janus J. Eriksen,            Aarhus University,         Denmark     (Polarizable embedding, TDA)
+  Rasmus Faber,                Technical Univ. of Denmark,Denmark     (Vib.avg. NMR w. SOPPA, parallel AO-SOPPA, CVS-CC and EOMCC)
+  Tobias Fahleson,             KTH Stockholm,             Sweden      (Damped cubic response)
+  Berta Fernandez,             U. of Santiago de CompostelSpain       (Doublet spin, ESR in RESPONS)
+  Lara Ferrighi,               Aarhus University,         Denmark     (PCM Cubic response)
+  Heike Fliegl,                University of Oslo,        Norway      (CCSD(R12))
+  Luca Frediani,               UiT The Arctic U. of NorwayNorway      (PCM)
+  Emmanuel Fromager,           Univ. Strasbourg,          France      (MC-srDFT)
+  Bin Gao,                     UiT The Arctic U. of NorwayNorway      (Gen1Int library)
+  Andre S. P. Gomes,           CNRS/Universite de Lille,  France      (Frozen density embedding)
+  Christof Haettig,            Ruhr-University Bochum,    Germany     (CC module)
+  Kasper Hald,                 Aarhus University,         Denmark     (CC module)
+  Asger Halkier,               Aarhus University,         Denmark     (CC module)
+  Frederik Beyer Hansen,       University of Copenhagen,  Denmark     (Parallel AO-SOPPA)
+  Erik D. Hedegaard,           Univ. of Southern Denmark, Denmark     (Polarizable embedding, QM/MM, and MC-srDFT)
+  Hanne Heiberg,               University of Oslo,        Norway      (Geometry analysis, selected one-electron integrals)
+  Trygve Helgaker,             University of Oslo,        Norway      (DALTON; ABACUS, ERI, DFT modules, London, and much more)
+  Alf Christian Hennum,        University of Oslo,        Norway      (Parity violation)
+  Hinne Hettema,               University of Auckland,    New Zealand (Quadratic response in RESPONS; SIRIUS supersymmetry)
+  Andreas E. Hillers-Bendtsen, University of Copenhagen,  Denmark     (MP3)
+  Eirik Hjertenaes,            NTNU,                      Norway      (Cholesky decomposition)
+  Nicolai Machholdt Hoeyer,    Aarhus University,         Denmark     (MP3)
+  Pi A. B. Haase,              University of Copenhagen,  Denmark     (Triplet AO-SOPPA)
+  Maria Francesca Iozzi,       University of Oslo,        Norway      (RPA)
+  Christoph Jacob,             TU Braunschweig            Germany     (Frozen density embedding)
+  Brano Jansik,                Technical Univ. of Ostrava Czech Rep.  (DFT cubic response)
+  Hans Joergen Aa. Jensen,     Univ. of Southern Denmark, Denmark     (DALTON; SIRIUS, RESPONS, ABACUS, MC-srDFT, and much more)
+  Dan Jonsson,                 UiT The Arctic U. of NorwayNorway      (Cubic response in RESPONS module)
+  Poul Joergensen,             Aarhus University,         Denmark     (RESPONS, ABACUS, and CC modules)
+  Maciej Kaminski,             University of Warsaw,      Poland      (CPPh in RESPONS)
+  Joanna Kauczor,              Linkoeping University,     Sweden      (Complex polarization propagator (CPP) module)
+  Sheela Kirpekar,             Univ. of Southern Denmark, Denmark     (Mass-velocity & Darwin integrals)
+  Frederik Oersted Kjeldal,    Technical Univ. of Denmark,Denmark     (MP3)
+  Erik Kjellgren,              Univ. of Southern Denmark, Denmark     (MC-srDFT)
+  Wim Klopper,                 KIT Karlsruhe,             Germany     (R12 code in CC, SIRIUS, and ABACUS modules)
+  Stefan Knecht,               ETH Zurich,                Switzerland (Parallel CI and MCSCF, MC-srDFT)
+  Rika Kobayashi,              Australian National Univ., Australia   (DIIS in CC, London in MCSCF)
+  Henrik Koch,                 NTNU,                      Norway      (CC module, Cholesky decomposition)
+  Jacob Kongsted,              Univ. of Southern Denmark, Denmark     (Polarizable embedding, polarizable density embedding, QM/MM)
+  Andrea Ligabue,              University of Modena,      Italy       (CTOCD, AOSOPPA)
+  Nanna H. List,               Univ. of Southern Denmark, Denmark     (Polarizable embedding)
+  Ola B. Lutnaes,              University of Oslo,        Norway      (DFT Hessian)
+  Juan I. Melo,                University of Buenos Aires,Argentina   (LRESC, Relativistic Effects on NMR Shieldings)
+  Kurt V. Mikkelsen,           University of Copenhagen,  Denmark     (MC-SCRF, QM/MM, and MP3)
+  Rolf H. Myhre,               NTNU,                      Norway      (Subsystems and CC3)
+  Christian Neiss,             Univ. Erlangen-Nuernberg,  Germany     (CCSD(R12))
+  Christian B. Nielsen,        University of Copenhagen,  Denmark     (QM/MM)
+  Patrick Norman,              KTH Stockholm,             Sweden      (Cubic response and complex frequency response in RESPONS)
+  Jeppe Olsen,                 Aarhus University,         Denmark     (SIRIUS CI/density modules)
+  Jogvan Magnus H. Olsen,      Aarhus University,         Denmark     (Polarizable embedding and polarizable density embedding)
+  Anders Osted,                Copenhagen University,     Denmark     (QM/MM)
+  Martin J. Packer,            University of Sheffield,   UK          (SOPPA)
+  Filip Pawlowski,             Kazimierz Wielki UniversityPoland      (CC3)
+  Morten N. Pedersen,          Univ. of Southern Denmark, Denmark     (Polarizable embedding)
+  Thomas B. Pedersen,          University of Oslo,        Norway      (Cholesky decomposition)
+  Patricio F. Provasi,         University of Northeastern,Argentina   (Analysis of coupling constants in localized orbitals)
+  Peter Reinholdt,             Univ. of Southern Denmark, Denmark     (Polarizable embedding and polarizable density embedding)
+  Zilvinas Rinkevicius,        KTH Stockholm,             Sweden      (open-shell DFT, ESR)
+  Elias Rudberg,               KTH Stockholm,             Sweden      (DFT grid and basis info)
+  Torgeir A. Ruden,            University of Oslo,        Norway      (Numerical derivatives in ABACUS)
+  Kenneth Ruud,                UiT The Arctic U. of NorwayNorway      (DALTON; ABACUS magnetic properties and much more)
+  Pawel Salek,                 KTH Stockholm,             Sweden      (DALTON; DFT code)
+  Claire C. M. Samson,         University of Karlsruhe    Germany     (Boys localization, r12 integrals in ERI)
+  Alfredo Sanchez de Meras,    University of Valencia,    Spain       (CC module, Cholesky decomposition)
+  Trond Saue,                  Paul Sabatier University,  France      (direct Fock matrix construction)
+  Stephan P. A. Sauer,         University of Copenhagen,  Denmark     (SOPPA(CCSD), SOPPA prop., AOSOPPA, vibrational g-factors)
+  Bernd Schimmelpfennig,       Forschungszentrum KarlsruheGermany     (AMFI module)
+  Anna K. Schnack-Petersen,    University of Copenhagen,  Denmark     (RPA(D) and HRPA(D) properties in AOSOPPA)
+  Kristian Sneskov,            Aarhus University,         Denmark     (Polarizable embedding, QM/MM)
+  Arnfinn H. Steindal,         UiT The Arctic U. of NorwayNorway      (parallel QM/MM, polarizable embedding)
+  Casper Steinmann,            Aalborg University,        Denmark     (QFIT, polarizable embedding)
+  K. O. Sylvester-Hvid,        University of Copenhagen,  Denmark     (MC-SCRF)
+  Peter R. Taylor,             VLSCI/Univ. of Melbourne,  Australia   (Symmetry handling ABACUS, integral transformation)
+  Andrew M. Teale,             University of Nottingham,  England     (DFT-AC, DFT-D)
+  David P. Tew,                University of Bristol,     England     (CCSD(R12))
+  Julien Toulouse,             Sorbonne Univ.,            France      (MC-srDFT)
+  Olav Vahtras,                KTH Stockholm,             Sweden      (Triplet response, spin-orbit, ESR, TDDFT, open-shell DFT)
+  Lucas Visscher,              Vrije Universiteit AmsterdaNetherlands (Frozen density embedding)
+  David J. Wilson,             La Trobe University,       Australia   (DFT Hessian and DFT magnetizabilities)
+  Luna Zamok,                  University of Copenhagen,  Denmark     (Block Lanczos RPA solver in SOPPA module)
+  Hans Agren,                  KTH Stockholm,             Sweden      (SIRIUS module, RESPONS, MC-SCRF solvation)
+ --------------------------------------------------------------------------------
+
+     Date and time (Linux)  : Tue Jul  7 10:34:50 2026
+     Host name              : n-62-31-23                              
+
+ * Work memory size             :   512000000 =  3.815 gigabytes.
+
+ * Directories for basis set searches:
+   1) /work3/jochar/DaltonTests
+   2) /zhome/d7/7/119775/My_Codes/Dalton_Release/dalton/build_omp_nov24/basis
+
+
+Compilation information
+-----------------------
+
+ Who compiled             | soco
+ Host                     | hpclogin1
+ System                   | Linux-6.1.112-1.el9.elrepo.x86_64
+ CMake generator          | Unix Makefiles
+ Processor                | x86_64
+ 64-bit integers          | OFF
+ MPI                      | OFF
+ Fortran compiler         | /appl/intel/2023.2.0.49397/compiler/2023.2.0/linux
+                          | /bin/intel64/ifort
+ Fortran compiler version | ifort (IFORT) 2021.10.0 20230609
+ C compiler               | /appl/intel/2023.2.0.49397/compiler/2023.2.0/linux
+                          | /bin/intel64/icc
+ C compiler version       | icc (ICC) 2021.10.0 20230609
+ C++ compiler             | /appl/intel/2023.2.0.49397/compiler/2023.2.0/linux
+                          | /bin/intel64/icpc
+ C++ compiler version     | icpc (ICC) 2021.10.0 20230609
+ Static linking           | OFF
+ Last Git revision        | a531ac4fbf115ebda1c90140ce3fd6aa236a2033
+ Git branch               | master
+ Configuration time       | 2024-11-14 11:23:30.470039
+
+ * Sequential calculation.
+
+
+   Content of the .dal input file
+ ----------------------------------
+
+**DALTON INPUT
+.RUN WAVE FUNCTIONS   !tipo di calcolo
+.RUN RESPONSE
+**INTEGRALS
+.DIPLEN               !integrali dell'operatore dipolo elettrico
+**WAVE FUNCTION
+.HF
+.CI
+!*PRINT
+!.PRINTL
+!   0 11
+*SCF INP              !parte da Hartree-Fock
+.DOUBLY OCCUPIED
+4
+.THRESH               !soglia di convergenza
+ 1.0D-10
+*CONFIGURATION INPUT
+.SPIN MULTIPLICITY
+1
+.SYMMETRY
+1
+.INACTIVE ORBITALS !the inner electrons are kept frozen
+0
+.CAS SPACE
+4
+.ELECTRONS
+4
+**RESPONS
+*LINEAR
+.THCLR
+1.0d-9
+.DIPLEN
+.SINGLE RESIDUE
+.ROOTS
+300
+**END OF INPUT
+
+
+   Content of the .mol file
+ ----------------------------
+
+BASIS
+cc-pVDZ
+test VQE
+dalton test
+Atomtypes=2 Angstrom Nosymmetry
+Charge=6.0 Atoms=1
+O     0.1035000000000000  0.0000000000000000  0.0
+Charge=1.0 Atoms=2
+H    -0.4640000000000000  0.7956000000000000  0.0
+H    -0.4640000000000000  -0.7956000000000000  0.0
+
+
+       *******************************************************************
+       *********** Output from DALTON general input processing ***********
+       *******************************************************************
+
+ --------------------------------------------------------------------------------
+   Overall default print level:    0
+   Print level for DALTON.STAT:    1
+
+    HERMIT 1- and 2-electron integral sections will be executed
+    "Old" integral transformation used (limited to max 255 basis functions)
+    Wave function sections will be executed (SIRIUS module)
+    Dynamic molecular response properties section will be executed (RESPONSE module)
+ --------------------------------------------------------------------------------
+
+
+   ****************************************************************************
+   *************** Output of molecule and basis set information ***************
+   ****************************************************************************
+
+
+    The two title cards from your ".mol" input:
+    --------------------------------------------------------------------------------
+ 1: test VQE
+ 2: dalton test
+    --------------------------------------------------------------------------------
+
+  Coordinates are entered in Angstrom and converted to atomic units.
+          - Conversion factor : 1 bohr = 0.52917721 A
+
+  Atomic type no.    1
+  --------------------
+  Nuclear charge:   6.00000
+  Number of symmetry independent centers:    1
+  Number of basis sets to read;    2
+  Basis set file used for this atomic type with Z =   6 :
+     "/zhome/d7/7/119775/My_Codes/Dalton_Release/dalton/build_omp_nov24/basis/cc-pVDZ"
+
+  Atomic type no.    2
+  --------------------
+  Nuclear charge:   1.00000
+  Number of symmetry independent centers:    2
+  Number of basis sets to read;    2
+  Basis set file used for this atomic type with Z =   1 :
+     "/zhome/d7/7/119775/My_Codes/Dalton_Release/dalton/build_omp_nov24/basis/cc-pVDZ"
+
+
+                         SYMGRP: Point group information
+                         -------------------------------
+
+@    Point group: C1 
+
+
+                                 Isotopic Masses
+                                 ---------------
+
+                           O          12.000000
+                           H           1.007825
+                           H           1.007825
+
+                       Total mass:    14.015650 amu
+                       Natural abundance:  98.870 %
+
+ Center-of-mass coordinates (a.u.):    0.041357    0.000000    0.000000
+ Center-of-mass coordinates (Angs):    0.021885    0.000000    0.000000
+
+
+  Atoms and basis sets
+  --------------------
+
+  Number of atom types :    2
+  Total number of atoms:    3
+
+  Basis set used is "cc-pVDZ" from the basis set library.
+
+  label    atoms   charge   prim   cont     basis
+  ----------------------------------------------------------------------
+  O           1    6.0000    26    14      [9s4p1d|3s2p1d]                                    
+  H           2    1.0000     7     5      [4s1p|2s1p]                                        
+  ----------------------------------------------------------------------
+  total:      3    8.0000    40    24
+  ----------------------------------------------------------------------
+  Spherical harmonic basis used.
+
+  Threshold for neglecting AO integrals:  1.00D-12
+
+
+  Cartesian Coordinates (a.u.)
+  ----------------------------
+
+  Total number of coordinates:    9
+  O       :     1  x   0.1955866539    2  y   0.0000000000    3  z   0.0000000000
+  H       :     4  x  -0.8768329220    5  y   1.5034661050    6  z   0.0000000000
+  H       :     7  x  -0.8768329220    8  y  -1.5034661050    9  z   0.0000000000
+
+
+   Interatomic separations (in Angstrom):
+   --------------------------------------
+
+            O           H           H     
+            ------      ------      ------
+ O     :    0.000000
+ H     :    0.977259    0.000000
+ H     :    0.977259    1.591200    0.000000
+
+
+  Max    interatomic separation is    1.5912 Angstrom (    3.0069 Bohr)
+  between atoms    3 and    2, "H     " and "H     ".
+
+  Min HX interatomic separation is    0.9773 Angstrom (    1.8468 Bohr)
+
+
+  Bond distances (Angstrom):
+  --------------------------
+
+                  atom 1     atom 2       distance
+                  ------     ------       --------
+  bond distance:  H          O            0.977259
+  bond distance:  H          O            0.977259
+
+
+  Bond angles (degrees):
+  ----------------------
+
+                  atom 1     atom 2     atom 3         angle
+                  ------     ------     ------         -----
+  bond angle:     H          O          H            109.000
+
+
+
+
+ Principal moments of inertia (u*A**2) and principal axes
+ --------------------------------------------------------
+
+   IA       0.555795          0.000000    1.000000    0.000000
+   IB       1.275865          1.000000    0.000000    0.000000
+   IC       1.831660          0.000000    0.000000    1.000000
+
+
+ Rotational constants
+ --------------------
+
+@    The molecule is planar.
+
+               A                   B                   C
+
+         909289.8431         396107.0071         275913.0898 MHz
+           30.330644           13.212708            9.203470 cm-1
+
+
+@  Nuclear repulsion energy :    6.830458472614 Hartree
+
+
+                     .---------------------------------------.
+                     | Starting in Integral Section (HERMIT) |
+                     `---------------------------------------'
+
+
+
+ ***************************************************************************************
+ ****************** Output from **INTEGRALS input processing (HERMIT) ******************
+ ***************************************************************************************
+
+
+
+    *************************************************************************
+    ****************** Output from HERMIT input processing ******************
+    *************************************************************************
+
+
+ Default print level:        1
+
+ Calculation of one- and two-electron Hamiltonian integrals.
+
+ The following one-electron property integrals are calculated as requested:
+          - overlap integrals
+          - dipole length integrals
+
+ Center of mass  (bohr):      0.041357451707      0.000000000000      0.000000000000
+ Operator center (bohr):      0.000000000000      0.000000000000      0.000000000000
+ Gauge origin    (bohr):      0.000000000000      0.000000000000      0.000000000000
+ Dipole origin   (bohr):      0.000000000000      0.000000000000      0.000000000000
+
+Calculation of 2-electron integrals are postponed until they are needed.
+
+
+     ************************************************************************
+     ************************** Output from HERINT **************************
+     ************************************************************************
+
+
+
+                      Nuclear contribution to dipole moments
+                      --------------------------------------
+
+                 au               Debye          C m (/(10**-30)
+
+      x     -0.58014592        -1.47458375        -4.91868195
+      y      0.00000000         0.00000000         0.00000000
+      z      0.00000000         0.00000000         0.00000000
+
+
+  Total CPU  time used in HERMIT:   0.02 seconds
+  Total wall time used in HERMIT:   0.05 seconds
+
+
+                        .----------------------------------.
+                        | End of Integral Section (HERMIT) |
+                        `----------------------------------'
+
+
+
+                   .--------------------------------------------.
+                   | Starting in Wave Function Section (SIRIUS) |
+                   `--------------------------------------------'
+
+
+     WARNING  Reference state is required for CI response and CI-NO
+     WARNING  ".STATE" was not specified for "*CI INPUT",
+     WARNING  the reference state is set to be state no.  1
+
+ *** Output from Huckel module :
+
+     Using EWMO model:          T
+     Using EHT  model:          F
+     Number of Huckel orbitals each symmetry:    7
+
+ EWMO - Energy Weighted Maximum Overlap - is a Huckel type method,
+        which normally is better than Extended Huckel Theory.
+ Reference: Linderberg and Ohrn, Propagators in Quantum Chemistry (Wiley, 1973)
+
+ Huckel EWMO eigenvalues for symmetry :  1
+          -11.347822      -1.217320      -0.652833      -0.453354      -0.406900
+           -0.098571      -0.094400
+
+ **********************************************************************
+ *SIRIUS* a direct, restricted step, second order MCSCF program       *
+ **********************************************************************
+
+ 
+     Date and time (Linux)  : Tue Jul  7 10:34:50 2026
+     Host name              : n-62-31-23                              
+
+ Title lines from ".mol" input file:
+     test VQE
+     dalton test
+
+ Print level on unit LUPRI =   2 is   0
+ Print level on unit LUW4  =   2 is   5
+
+@    Configuration interaction calculation.
+
+@    CI response calculation.
+
+@    CI type: user specified active spaces.
+@              Type: complete active space calculation (CAS).
+
+@    This is a combination run starting with
+@              a restricted, closed shell Hartree-Fock calculation
+
+
+ Initial molecular orbitals are obtained according to
+ ".MOSTART EWMO  " input option
+
+     Wave function specification
+     ============================
+@    Wave function type        --- CI ---
+@    Number of closed shell electrons           0
+@    Number of electrons in active shells       4
+@    Total charge of the molecule               4
+
+@    Spin multiplicity and 2 M_S                1         0
+@    Total number of symmetries                 1 (point group: C1 )
+@    Reference state symmetry                   1 (irrep name : A  )
+
+     Orbital specifications
+     ======================
+@    Abelian symmetry species          All |    1
+@                                          |  A  
+                                       --- |  ---
+@    Inactive orbitals                   0 |    0
+@    Active orbitals                     4 |    4
+@    Secondary orbitals                 20 |   20
+@    Total number of orbitals           24 |   24
+@    Number of basis functions          24 |   24
+
+      -- Initial occupation of symmetries is determined from user input.                      
+      -- Initial occupation of symmetries is :
+@    Occupied SCF orbitals               4 |    4
+
+     Optimization information
+     ========================
+@    Number of configurations                20
+@    Number of orbital rotations              0
+     ------------------------------------------
+@    Total number of variables               20
+
+     Maximum number of CI iterations         25
+     Threshold for CI convergence      1.00D-05
+     Number of CI roots to converge           1
+
+@    Reference state in CI response calculation :       1
+
+
+ ***********************************************
+ ***** DIIS acceleration of SCF iterations *****
+ ***********************************************
+
+ C1-DIIS algorithm; max error vectors =    8
+
+ Iter      Total energy        Error norm    Delta(E)  DIIS dim.
+ -----------------------------------------------------------------------------
+
+Calculating AOSUPINT
+
+---> (Re)generating AOTWOINT
+
+
+     ************************************************************************
+     ************************** Output from HERINT **************************
+     ************************************************************************
+
+
+ Threshold for neglecting two-electron integrals:  1.00D-12
+ HERMIT - Number of two-electron integrals written:       21669 ( 48.0% )
+ HERMIT - Megabytes written:                              0.275
+
+     (Precalculated AO two-electron integrals are transformed to P-supermatrix elements.
+      Threshold for discarding integrals :  1.00D-12 )
+
+  CPU  time used in FORMSUP    is   0.01 seconds
+  WALL time used in FORMSUP    is   0.20 seconds
+@  1    -38.6863921469        1.34608D+00   -3.87D+01    1
+      Virial theorem: -V/T =      2.011693
+@    MULPOP   O       0.16; H      -0.08; H      -0.08; 
+   1  Level shift: doubly occupied orbital energies shifted by -2.00D-01
+ -----------------------------------------------------------------------------
+@  2    -38.8441475558        2.83577D-01   -1.58D-01    2
+      Virial theorem: -V/T =      1.989915
+@    MULPOP   O       0.03; H      -0.01; H      -0.01; 
+   2  Level shift: doubly occupied orbital energies shifted by -5.00D-02
+ -----------------------------------------------------------------------------
+@  3    -38.8535714485        8.17065D-02   -9.42D-03    3
+      Virial theorem: -V/T =      1.991112
+@    MULPOP   O      -0.00; H       0.00; H       0.00; 
+   3  Level shift: doubly occupied orbital energies shifted by -2.50D-02
+ -----------------------------------------------------------------------------
+@  4    -38.8544963036        1.72546D-02   -9.25D-04    4
+      Virial theorem: -V/T =      1.990262
+@    MULPOP   O      -0.04; H       0.02; H       0.02; 
+ -----------------------------------------------------------------------------
+@  5    -38.8545491697        2.48287D-03   -5.29D-05    5
+      Virial theorem: -V/T =      1.990390
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@  6    -38.8545503414        4.52581D-04   -1.17D-06    6
+      Virial theorem: -V/T =      1.990401
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@  7    -38.8545503839        7.18468D-05   -4.25D-08    7
+      Virial theorem: -V/T =      1.990408
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@  8    -38.8545503851        1.30210D-05   -1.21D-09    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@  9    -38.8545503851        1.79887D-06   -4.14D-11    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@ 10    -38.8545503851        2.41543D-07   -8.24D-13    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@ 11    -38.8545503851        2.51243D-08   -1.42D-14    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@ 12    -38.8545503851        1.74228D-09    1.42D-14    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@ 13    -38.8545503851        2.15133D-10    1.42D-14    8
+      Virial theorem: -V/T =      1.990409
+@    MULPOP   O      -0.05; H       0.03; H       0.03; 
+ -----------------------------------------------------------------------------
+@ 14    -38.8545503851        2.72506D-11   -2.84D-14    8
+
+@ *** DIIS converged in  14 iterations !
+@     Converged SCF energy, gradient:    -38.854550385126    2.73D-11
+    - total time used in SIRFCK :              0.00 seconds
+
+ --- Writing SIRIFC interface file
+
+--------------------------------------------------------------------------------
+
+
+     .--------------------------------------------------.
+     | HF-SCF KT IPs [a.u. & eV] from Koopmans' theorem |
+     `--------------------------------------------------'
+
+
+     HF-SCF KT symmetry 1 ( A  ) in point group C1  -- 4 principal poles with pole strength 1
+
+   ============  ============  ============  ============
+      11.259787      0.933645      0.614120      0.377352
+     306.394389     25.405776     16.711059     10.268277
+   ============  ============  ============  ============
+
+@ Summary of HF-SCF KT ionization potentials [eV]:
+
+@ Symmetry 1 (A  ) :   306.394      25.406      16.711      10.268
+
+  === End of HF-SCF KT output ===
+--------------------------------------------------------------------------------
+
+
+ CPU and wall time for SCF :       0.124       0.695
+
+
+ ----- Output from SIRIUS CI module (CICTL) -----
+
+
+
+
+ 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.013       0.031
+
+ (CIST1) 8 lowest diagonal elements:
+
+ Element no. Config.no.    Active energy      Total energy
+
+         1 :          1    -40.7571051441    -33.9266466715
+         2 :          7    -40.4384025969    -33.6079441243
+         3 :          8    -40.2130145663    -33.3825560937
+         4 :          2    -40.0803096389    -33.2498511663
+         5 :          9    -39.8770441170    -33.0465856444
+         6 :          4    -39.4570420921    -32.6265836194
+         7 :         10    -29.4670096844    -22.6365512117
+         8 :         11    -29.2784658756    -22.4480074030
+
+Lowest 1 elements are used as separate start CI vectors.
+
+
+ Convergence threshold for CI optimization :     0.00001000
+
+
+ CI root     eigenvalue        residual norm
+
+    1      -33.9266466715        0.1773930312
+
+ CI root     eigenvalue        residual norm
+
+    1      -33.9648791231        0.0175987663
+
+ CI root     eigenvalue        residual norm
+
+    1      -33.9649065603        0.0008768398
+
+ CI root     eigenvalue        residual norm
+
+    1      -33.9649067238        0.0000853405
+
+ CI root     eigenvalue        residual norm
+
+    1      -33.9649067242        0.0000029434 converged
+
+ The requested root number is now converged.
+
+
+ *** CI converged in  5 iterations.
+
+
+
+@ Final CI energies and residuals in symmetry 1 (irrep A  )
+@    1      -33.964906724231660       2.94D-06
+
+ Writing SIRIFC interface file for CI root no. 1
+
+ CPU and wall time for CI :       0.021       0.145
+
+
+                       .-----------------------------------.
+                       | --- Final results from SIRIUS --- |
+                       `-----------------------------------'
+
+
+@    Spin multiplicity:           1
+@    Spatial symmetry:            1 ( irrep  A   in C1  )
+@    Total charge of molecule:    4
+
+@    This was a CI calculation.
+@    State number:                1
+
+@    Final CI energy:             -33.964906724232
+@    Nuclear repulsion:             6.830458472614
+@    Electronic energy:           -40.795365196846
+
+@    Final gradient norm:           0.000002943393
+
+ 
+     Date and time (Linux)  : Tue Jul  7 10:34:51 2026
+     Host name              : n-62-31-23                              
+
+ Occupancies of natural orbitals
+ -------------------------------
+
+ Symmetry 1  ( A  ) -- Total occupation in this symmetry is   4.000000000
+
+   1.999997864   1.903967787   0.091561414   0.004472935
+
+  Effective numbers of unpaired electrons this symmetry Eqs. 1) and 2):  0.37  0.06
+
+  Total effective number of unpaired electrons :
+  Eq. 1) sum(i) [(2 - n_i) n_i]    =  0.3665
+  Eq. 2) sum(i) [(2 - n_i) n_i]**2 =  0.0640
+ (Reference: M. Head-Gordon, Chemical Physics Letters 372 (2003) 508-511)
+
+  --- NOTE THAT THE OCCUPATION NUMBERS ARE FOR ANALYSIS PURPOSE ONLY
+  --- The orbital coefficients have NOT been transformed
+  --- to ordered natural orbitals.
+
+File label for MO orbitals:   7Jul26    CIORB  
+
+ (Only coefficients > 0.0100 are printed.)
+
+ Molecular orbitals for symmetry species 1  (A  )
+ ------------------------------------------------
+
+    Orbital         1        2        3        4        5        6        7
+   1 O   :1s    -1.0017   0.0288   0.0000   0.0021  -0.0000  -0.0678   0.0000
+   2 O   :1s    -0.0088  -0.7436   0.0000  -0.3924  -0.0000   0.1564   0.0000
+   3 O   :1s     0.0083   0.1859  -0.0000  -0.1702   0.0000   2.1089  -0.0000
+   4 O   :2px    0.0052   0.2041  -0.0000  -0.7723  -0.0000  -0.2334  -0.0000
+   5 O   :2py    0.0000   0.0000  -0.6838  -0.0000  -0.0000  -0.0000  -0.4647
+   6 O   :2pz    0.0000   0.0000   0.0000   0.0000  -0.6456  -0.0000   0.0000
+   7 O   :2px   -0.0040  -0.0871   0.0000  -0.0408  -0.0000  -0.5830   0.0000
+   8 O   :2py   -0.0000  -0.0000   0.1725   0.0000   0.0000   0.0000  -1.1878
+   9 O   :2pz    0.0000   0.0000   0.0000   0.0000  -0.3856  -0.0000   0.0000
+  10 O   :3d2-  -0.0000   0.0000   0.0488  -0.0000   0.0000  -0.0000   0.0554
+  12 O   :3d0    0.0015   0.0094   0.0000  -0.0236   0.0000  -0.0309   0.0000
+  13 O   :3d1+  -0.0000  -0.0000  -0.0000  -0.0000   0.0328   0.0000  -0.0000
+  14 O   :3d2+   0.0003  -0.0040   0.0000   0.0250   0.0000  -0.0043   0.0000
+  15 H   :1s     0.0024  -0.4717  -0.5688   0.2281   0.0000   0.0117  -0.0204
+  16 H   :1s    -0.0031   0.1983   0.1639  -0.0788  -0.0000  -1.5519   2.1788
+  17 H   :2px    0.0006  -0.0159  -0.0170  -0.0108   0.0000  -0.0106   0.0132
+  18 H   :2py   -0.0009   0.0299   0.0108  -0.0100   0.0000   0.0214  -0.0270
+  19 H   :2pz   -0.0000  -0.0000  -0.0000  -0.0000  -0.0158   0.0000  -0.0000
+  20 H   :1s     0.0024  -0.4717   0.5688   0.2281   0.0000   0.0117   0.0204
+  21 H   :1s    -0.0031   0.1983  -0.1639  -0.0788   0.0000  -1.5519  -2.1788
+  22 H   :2px    0.0006  -0.0159   0.0170  -0.0108   0.0000  -0.0106  -0.0132
+  23 H   :2py    0.0009  -0.0299   0.0108   0.0100   0.0000  -0.0214  -0.0270
+  24 H   :2pz   -0.0000  -0.0000  -0.0000  -0.0000  -0.0158   0.0000  -0.0000
+
+    Orbital         8        9       10       11       12       13       14
+   1 O   :1s     0.0000   0.0340  -0.0000  -0.2644  -0.0000  -0.7132  -0.0000
+   2 O   :1s     0.0000  -0.1429  -0.0000  -0.9538  -0.0000  -3.3762  -0.0000
+   3 O   :1s    -0.0000  -1.0576   0.0000   1.5506   0.0000   5.8207  -0.0000
+   4 O   :2px   -0.0000  -1.0920  -0.0000  -0.7480   0.0000   0.1168   0.0000
+   5 O   :2py   -0.4221  -0.0000  -0.0000   0.0000   1.1561  -0.0000  -0.0000
+   6 O   :2pz   -0.0000   0.0000  -1.5782  -0.0000  -0.0000   0.0000  -0.0000
+   7 O   :2px    0.0000   1.9823  -0.0000   0.4107  -0.0000  -0.9125  -0.0000
+   8 O   :2py    1.8809   0.0000   0.0000  -0.0000  -2.1565   0.0000  -0.0000
+   9 O   :2pz   -0.0000   0.0000   1.7313  -0.0000  -0.0000   0.0000   0.0000
+  10 O   :3d2-   0.0852   0.0000   0.0000   0.0000   0.3982  -0.0000   0.0000
+  11 O   :3d1-  -0.0000  -0.0000  -0.0000  -0.0000  -0.0000   0.0000   0.6347
+  12 O   :3d0    0.0000  -0.0517   0.0000   0.2423  -0.0000  -0.1225   0.0000
+  14 O   :3d2+   0.0000  -0.0516   0.0000   0.1813  -0.0000  -0.0714  -0.0000
+  15 H   :1s    -1.0840   0.7905   0.0000  -1.0378  -0.5049  -0.0097   0.0000
+  16 H   :1s     0.0426   0.0334  -0.0000   0.5906   1.8455  -1.4125  -0.0000
+  17 H   :2px    0.0312  -0.0190   0.0000  -0.0030   0.2160  -0.1667   0.0000
+  18 H   :2py   -0.0051  -0.0174   0.0000  -0.2188  -0.1841   0.1970  -0.0000
+  19 H   :2pz    0.0000  -0.0000  -0.0908   0.0000   0.0000  -0.0000   0.3429
+  20 H   :1s     1.0840   0.7905   0.0000  -1.0378   0.5049  -0.0097   0.0000
+  21 H   :1s    -0.0426   0.0334   0.0000   0.5906  -1.8455  -1.4125  -0.0000
+  22 H   :2px   -0.0312  -0.0190   0.0000  -0.0030  -0.2160  -0.1667  -0.0000
+  23 H   :2py   -0.0051   0.0174   0.0000   0.2188  -0.1841  -0.1970   0.0000
+  24 H   :2pz    0.0000  -0.0000  -0.0908   0.0000   0.0000  -0.0000  -0.3429
+
+ Printout of CI-coefficients abs greater than 0.05000 for root  1
+ *** NOTE: this root is the CI reference state ***
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         1 is      0.97556645    9.75566446E-01
+  Orbital          1   2
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         2 is     -0.21394106   -2.13941057E-01
+  Orbital          1   3
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  5.0000E-02 to  1.0000E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99750067
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99750067E+00      0.9975006672
+  10- 2 to 10- 1         2    0.24851649E-02      0.9999858321
+  10- 3 to 10- 2         3    0.13329036E-04      0.9999991612
+  10- 4 to 10- 3         5    0.83881938E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+  Total CPU  time used in SIRIUS :   0.17 seconds
+  Total wall time used in SIRIUS :   0.92 seconds
+
+ 
+     Date and time (Linux)  : Tue Jul  7 10:34:51 2026
+     Host name              : n-62-31-23                              
+
+
+                     .---------------------------------------.
+                     | End of Wave Function Section (SIRIUS) |
+                     `---------------------------------------'
+
+
+
+                 .------------------------------------------------.
+                 | Starting in Dynamic Property Section (RESPONS) |
+                 `------------------------------------------------'
+
+
+ ----------------------------------------------------------------------------------------
+  RESPONSE  -  an MCSCF, MC-srDFT, DFT, SOPPA and SOPPA-srDFT response property program
+ ----------------------------------------------------------------------------------------
+
+ This is a configuration interaction response calculation.
+   Note: this is equivalent to a CI sum-over-states calculation of response properties.
+
+
+ -------- OUTPUT FROM RESPONSE INPUT PROCESSING --------
+
+
+
+
+  Linear Response single residue calculation
+ -------------------------------------------
+
+
+    4 input options by user.
+
+ Print level                                    : IPRPP  =   2
+ Maximum number of iterations for eigenval.eqs. : MAXITP =  60
+ Threshold for convergence of eigenvalue eqs.   : THCPP  = 1.000D-03
+ Maximum iterations in optimal orbital algorithm: MAXITO =   5
+
+    300 Excitation energies are calculated for symmetry no.    1
+
+      3 property residues are calculated with labels:
+
+               XDIPLEN 
+               YDIPLEN 
+               ZDIPLEN 
+
+ Old direct access AO file found, SORTA skipped.
+
+ 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.016       0.045
+
+
+ CI energy            :      -33.964906724231660
+ -- inactive part     :        6.830458472614062
+ --   active part     :      -40.795365196845722
+ -- nuclear repulsion :        6.830458472614062
+
+
+                         *******************************
+                         *** CI response calculation ***
+                         *******************************
+
+ ----------------------------------------------------------------
+ ----- Linear response calculation
+ ----- Symmetry of excitation/property operator(s)    1  ( A  )
+ ----------------------------------------------------------------
+
+ Number of excitations of this symmetry          300
+ Number of response properties of this symmetry    0
+ Number of C6/C8 properties of this symmetry       0
+
+
+ Perturbation symmetry.     KSYMOP:           1
+ Perturbation spin symmetry.TRPLET:           F
+ Orbital variables.         KZWOPT:           0
+ Configuration variables.   KZCONF:          20
+ Total number of variables. KZVAR :          20
+
+ ** RSPVAR ** Number of PP start vectors  300
+   exceeds the maximum number of variables   19
+   Number of start vectors reset to number of variables
+
+
+
+ --- EXCITATION ENERGIES AND TRANSITION MOMENT CALCULATION (MCTDHF) ---
+
+ Operator symmetry = 1  ( A  ); triplet =   F
+
+RSPORT:    1 out of   20 new trial vectors linear dependent
+
+ ** RSPCTL MICROITERATION NUMBER    1
+
+      Root  Residual tot.,    conf., and orb.    Bnorm      Eigenvalue
+      ----------------------------------------------------------------
+         1    3.86413D-15  3.86D-15  0.00D+00  1.00D+00    5.15019D-01
+         2    1.33565D-14  1.34D-14  0.00D+00  1.00D+00    6.19669D-01
+         3    7.85575D-15  7.86D-15  0.00D+00  1.00D+00    7.52928D-01
+         4    7.75724D-15  7.76D-15  0.00D+00  1.00D+00    9.44357D-01
+         5    2.67988D-14  2.68D-14  0.00D+00  1.00D+00    1.36859D+00
+         6    9.36599D-15  9.37D-15  0.00D+00  1.00D+00    1.13195D+01
+         7    1.75941D-14  1.76D-14  0.00D+00  1.00D+00    1.15042D+01
+         8    1.17202D-14  1.17D-14  0.00D+00  1.00D+00    1.17485D+01
+         9    1.58822D-14  1.59D-14  0.00D+00  1.00D+00    1.18634D+01
+        10    2.21587D-14  2.22D-14  0.00D+00  1.00D+00    1.20756D+01
+        11    1.32535D-14  1.33D-14  0.00D+00  1.00D+00    1.22021D+01
+        12    1.50763D-14  1.51D-14  0.00D+00  1.00D+00    1.23644D+01
+        13    1.68749D-14  1.69D-14  0.00D+00  1.00D+00    1.25964D+01
+        14    4.01108D-14  4.01D-14  0.00D+00  1.00D+00    2.53069D+01
+        15    5.50032D-14  5.50D-14  0.00D+00  1.00D+00    2.54121D+01
+        16    3.55177D-14  3.55D-14  0.00D+00  1.00D+00    2.56082D+01
+        17    3.47833D-14  3.48D-14  0.00D+00  1.00D+00    2.59600D+01
+        18    2.37941D-14  2.38D-14  0.00D+00  1.00D+00    2.62343D+01
+        19    3.95577D-14  3.96D-14  0.00D+00  1.00D+00    2.65863D+01
+        20    4.41331D-15  4.41D-15  0.00D+00  1.00D+00   -5.15019D-01
+
+ *** THE REQUESTED   19 SOLUTION VECTORS CONVERGED
+
+ Convergence of RSP solution vectors, threshold = 1.00D-03
+ ---------------------------------------------------------------
+ (dimension of paired reduced space:   38)
+ RSP solution vector no.    1; norm of residual   3.86D-15
+ RSP solution vector no.    2; norm of residual   1.34D-14
+ RSP solution vector no.    3; norm of residual   7.86D-15
+ RSP solution vector no.    4; norm of residual   7.76D-15
+ RSP solution vector no.    5; norm of residual   2.68D-14
+ RSP solution vector no.    6; norm of residual   9.37D-15
+ RSP solution vector no.    7; norm of residual   1.76D-14
+ RSP solution vector no.    8; norm of residual   1.17D-14
+ RSP solution vector no.    9; norm of residual   1.59D-14
+ RSP solution vector no.   10; norm of residual   2.22D-14
+ RSP solution vector no.   11; norm of residual   1.33D-14
+ RSP solution vector no.   12; norm of residual   1.51D-14
+ RSP solution vector no.   13; norm of residual   1.69D-14
+ RSP solution vector no.   14; norm of residual   4.01D-14
+ RSP solution vector no.   15; norm of residual   5.50D-14
+ RSP solution vector no.   16; norm of residual   3.55D-14
+ RSP solution vector no.   17; norm of residual   3.48D-14
+ RSP solution vector no.   18; norm of residual   2.38D-14
+ RSP solution vector no.   19; norm of residual   3.96D-14
+
+ *** RSPCTL MICROITERATIONS CONVERGED
+
+@ Singlet transition operator label: XDIPLEN 
+@ STATE NO:    1 *TRANSITION MOMENT:  6.49384882E-15 *ENERGY(eV):   14.014374    
+@ STATE NO:    2 *TRANSITION MOMENT: -0.96507708     *ENERGY(eV):   16.862053    
+@ STATE NO:    3 *TRANSITION MOMENT:  0.24040742     *ENERGY(eV):   20.488209    
+@ STATE NO:    4 *TRANSITION MOMENT: -2.10525194E-14 *ENERGY(eV):   25.697262    
+@ STATE NO:    5 *TRANSITION MOMENT:  8.48266319E-02 *ENERGY(eV):   37.241184    
+@ STATE NO:    6 *TRANSITION MOMENT:  3.27342841E-16 *ENERGY(eV):   308.01798    
+@ STATE NO:    7 *TRANSITION MOMENT:  8.77354495E-02 *ENERGY(eV):   313.04466    
+@ STATE NO:    8 *TRANSITION MOMENT:  1.07278817E-02 *ENERGY(eV):   319.69227    
+@ STATE NO:    9 *TRANSITION MOMENT: -5.28242206E-16 *ENERGY(eV):   322.81929    
+@ STATE NO:   10 *TRANSITION MOMENT: -1.58516055E-16 *ENERGY(eV):   328.59332    
+@ STATE NO:   11 *TRANSITION MOMENT:  7.37772231E-04 *ENERGY(eV):   332.03650    
+@ STATE NO:   12 *TRANSITION MOMENT: -2.16098607E-03 *ENERGY(eV):   336.45298    
+@ STATE NO:   13 *TRANSITION MOMENT:  6.70699035E-18 *ENERGY(eV):   342.76681    
+@ STATE NO:   14 *TRANSITION MOMENT: -4.64419412E-04 *ENERGY(eV):   688.63516    
+@ STATE NO:   15 *TRANSITION MOMENT:  3.31593914E-17 *ENERGY(eV):   691.49809    
+
+@ Singlet transition operator label: YDIPLEN 
+@ STATE NO:    1 *TRANSITION MOMENT:  -1.1934992     *ENERGY(eV):   14.014374    
+@ STATE NO:    2 *TRANSITION MOMENT: -2.93823616E-14 *ENERGY(eV):   16.862053    
+@ STATE NO:    3 *TRANSITION MOMENT: -5.90695233E-14 *ENERGY(eV):   20.488209    
+@ STATE NO:    4 *TRANSITION MOMENT: -2.78730551E-02 *ENERGY(eV):   25.697262    
+@ STATE NO:    5 *TRANSITION MOMENT:  4.13438997E-16 *ENERGY(eV):   37.241184    
+@ STATE NO:    6 *TRANSITION MOMENT:  8.11529447E-02 *ENERGY(eV):   308.01798    
+@ STATE NO:    7 *TRANSITION MOMENT:  3.06136898E-16 *ENERGY(eV):   313.04466    
+@ STATE NO:    8 *TRANSITION MOMENT:  1.59614305E-16 *ENERGY(eV):   319.69227    
+@ STATE NO:    9 *TRANSITION MOMENT:  1.11801467E-02 *ENERGY(eV):   322.81929    
+@ STATE NO:   10 *TRANSITION MOMENT: -2.95292645E-03 *ENERGY(eV):   328.59332    
+@ STATE NO:   11 *TRANSITION MOMENT: -2.73142704E-17 *ENERGY(eV):   332.03650    
+@ STATE NO:   12 *TRANSITION MOMENT:  2.94306537E-16 *ENERGY(eV):   336.45298    
+@ STATE NO:   13 *TRANSITION MOMENT: -4.69809942E-04 *ENERGY(eV):   342.76681    
+@ STATE NO:   14 *TRANSITION MOMENT: -2.00348553E-17 *ENERGY(eV):   688.63516    
+@ STATE NO:   15 *TRANSITION MOMENT:  2.59064015E-05 *ENERGY(eV):   691.49809    
+
+@ Singlet transition operator label: ZDIPLEN 
+@ STATE NO:    1 *TRANSITION MOMENT:  2.43542703E-15 *ENERGY(eV):   14.014374    
+@ STATE NO:    2 *TRANSITION MOMENT:  3.50074747E-15 *ENERGY(eV):   16.862053    
+@ STATE NO:    3 *TRANSITION MOMENT: -3.00698872E-16 *ENERGY(eV):   20.488209    
+@ STATE NO:    4 *TRANSITION MOMENT: -4.23697798E-16 *ENERGY(eV):   25.697262    
+@ STATE NO:    5 *TRANSITION MOMENT: -5.68508012E-16 *ENERGY(eV):   37.241184    
+@ STATE NO:    6 *TRANSITION MOMENT: -2.98074574E-16 *ENERGY(eV):   308.01798    
+@ STATE NO:    7 *TRANSITION MOMENT: -4.46491062E-16 *ENERGY(eV):   313.04466    
+@ STATE NO:    8 *TRANSITION MOMENT:  3.11192249E-17 *ENERGY(eV):   319.69227    
+@ STATE NO:    9 *TRANSITION MOMENT: -4.95720454E-17 *ENERGY(eV):   322.81929    
+@ STATE NO:   10 *TRANSITION MOMENT:  7.30569926E-18 *ENERGY(eV):   328.59332    
+@ STATE NO:   11 *TRANSITION MOMENT:  2.42565455E-17 *ENERGY(eV):   332.03650    
+@ STATE NO:   12 *TRANSITION MOMENT:  1.17896897E-17 *ENERGY(eV):   336.45298    
+@ STATE NO:   13 *TRANSITION MOMENT:  1.31025931E-18 *ENERGY(eV):   342.76681    
+@ STATE NO:   14 *TRANSITION MOMENT:  2.59935965E-19 *ENERGY(eV):   688.63516    
+@ STATE NO:   15 *TRANSITION MOMENT: -1.12928884E-18 *ENERGY(eV):   691.49809    
+
+
+ **************************************************************************************
+ *** @ Excit. operator sym 1 & ref. state sym 1 => excited state symmetry 1  ( A  ) ***
+ **************************************************************************************
+
+
+
+ @ Excited state no:    1 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :  0.51501878     au
+@                       14.014374     eV;   113033.56     cm-1;   1352.1816     kJ / mol
+
+@ Total energy :       -33.449888     au
+
+@ Operator label: XDIPLEN ; Transition moment :  6.49384882E-15 au
+@ Oscillator strength (LENGTH)   :  1.44789195E-29  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  -1.1934992     au
+@ Oscillator strength (LENGTH)   :  0.48907569      (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  2.43542703E-15 au
+@ Oscillator strength (LENGTH)   :  2.03648891E-30  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  0.48907569    
+
+ Eigenvector for state no.  1
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           7                           -0.9999651062        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         7 is     -0.99996511   -9.99965106E-01
+  Orbital          1   2   3
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99993021
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99993021E+00      0.9999302136
+  10- 3 to 10- 2         4    0.68203486E-04      0.9999984171
+  10- 4 to 10- 3         3    0.15829152E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:    2 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :  0.61966907     au
+@                       16.862053     eV;   136001.64     cm-1;   1626.9409     kJ / mol
+
+@ Total energy :       -33.345238     au
+
+@ Operator label: XDIPLEN ; Transition moment : -0.96507708     au
+@ Oscillator strength (LENGTH)   :  0.38476235      (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -2.93823616E-14 au
+@ Oscillator strength (LENGTH)   :  3.56649780E-28  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  3.50074747E-15 au
+@ Oscillator strength (LENGTH)   :  5.06279254E-30  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  0.38476235    
+
+ Eigenvector for state no.  2
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           2                           -0.1979596869        0.0000000000
+           4                            0.1905031361        0.0000000000
+           8                           -0.9613359578        0.0000000000
+
+       17 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         8 is     -0.96133596   -9.61335958E-01
+  Orbital          1   2   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         2 is     -0.19795969   -1.97959687E-01
+  Orbital          1   3
+  Spin coupling    2   2
+
+  Coefficient of CSF no.         4 is      0.19050314    1.90503136E-01
+  Orbital          1   4
+  Spin coupling    2   2
+
+ Norm of printed CI vector ..      0.99964631
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         3    0.99964631E+00      0.9996463063
+  10- 2 to 10- 1         1    0.33096021E-03      0.9999772665
+  10- 3 to 10- 2         3    0.20962940E-04      0.9999982294
+  10- 4 to 10- 3         4    0.17615711E-05      0.9999999910
+  10- 5 to 10- 4         1    0.90087447E-08      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:    3 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :  0.75292786     au
+@                       20.488209     eV;   165248.56     cm-1;   1976.8118     kJ / mol
+
+@ Total energy :       -33.211979     au
+
+@ Operator label: XDIPLEN ; Transition moment :  0.24040742     au
+@ Oscillator strength (LENGTH)   :  2.90106746E-02  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -5.90695233E-14 au
+@ Oscillator strength (LENGTH)   :  1.75141490E-27  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -3.00698872E-16 au
+@ Oscillator strength (LENGTH)   :  4.53863966E-32  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  2.90106746E-02
+
+ Eigenvector for state no.  3
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           1                           -0.2119570295        0.0000000000
+           2                           -0.9553609457        0.0000000000
+           8                            0.2047514265        0.0000000000
+
+       17 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         2 is     -0.95536095   -9.55360946E-01
+  Orbital          1   3
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         1 is     -0.21195703   -2.11957030E-01
+  Orbital          1   2
+  Spin coupling    2   2
+
+  Coefficient of CSF no.         8 is      0.20475143    2.04751426E-01
+  Orbital          1   2   4
+  Spin coupling    2   1  -1
+
+ Norm of printed CI vector ..      0.99956347
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         3    0.99956347E+00      0.9995634655
+  10- 2 to 10- 1         1    0.40991668E-03      0.9999733822
+  10- 3 to 10- 2         3    0.25180368E-04      0.9999985626
+  10- 4 to 10- 3         5    0.14374099E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:    4 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :  0.94435702     au
+@                       25.697262     eV;   207262.41     cm-1;   2479.4090     kJ / mol
+
+@ Total energy :       -33.020550     au
+
+@ Operator label: XDIPLEN ; Transition moment : -2.10525194E-14 au
+@ Oscillator strength (LENGTH)   :  2.79031417E-28  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -2.78730551E-02 au
+@ Oscillator strength (LENGTH)   :  4.89118510E-04  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -4.23697798E-16 au
+@ Oscillator strength (LENGTH)   :  1.13020537E-31  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  4.89118510E-04
+
+ Eigenvector for state no.  4
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           9                           -0.9999557250        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         9 is     -0.99995573   -9.99955725E-01
+  Orbital          1   3   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99991145
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99991145E+00      0.9999114520
+  10- 3 to 10- 2         4    0.87611251E-04      0.9999990633
+  10- 4 to 10- 3         3    0.93673185E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:    5 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   1.3685884     au
+@                       37.241184     eV;   300370.42     cm-1;   3593.2282     kJ / mol
+
+@ Total energy :       -32.596318     au
+
+@ Operator label: XDIPLEN ; Transition moment :  8.48266319E-02 au
+@ Oscillator strength (LENGTH)   :  6.56517081E-03  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  4.13438997E-16 au
+@ Oscillator strength (LENGTH)   :  1.55956852E-31  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -5.68508012E-16 au
+@ Oscillator strength (LENGTH)   :  2.94886413E-31  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  6.56517081E-03
+
+ Eigenvector for state no.  5
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           4                            0.9803378446        0.0000000000
+           8                            0.1833775024        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         4 is      0.98033784    9.80337845E-01
+  Orbital          1   4
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         8 is      0.18337750    1.83377502E-01
+  Orbital          1   2   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  1.0000E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99468960
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99468960E+00      0.9946895979
+  10- 2 to 10- 1         2    0.53003558E-02      0.9999899537
+  10- 3 to 10- 2         2    0.90149460E-05      0.9999989686
+  10- 4 to 10- 3         5    0.10285544E-05      0.9999999972
+  10- 5 to 10- 4         1    0.28062084E-08      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:    6 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   11.319453     au
+@                       308.01798     eV;   2484332.7     cm-1;   29719.219     kJ / mol
+
+@ Total energy :       -22.645454     au
+
+@ Operator label: XDIPLEN ; Transition moment :  3.27342841E-16 au
+@ Oscillator strength (LENGTH)   :  8.08611424E-31  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  8.11529447E-02 au
+@ Oscillator strength (LENGTH)   :  4.96984385E-02  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -2.98074574E-16 au
+@ Oscillator strength (LENGTH)   :  6.70477244E-31  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  4.96984385E-02
+
+ Eigenvector for state no.  6
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          10                            0.9836139317        0.0000000000
+          19                           -0.1025688896        0.0000000000
+          20                           -0.1347347340        0.0000000000
+
+       17 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        10 is      0.98361393    9.83613932E-01
+  Orbital          2   1   3
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.        19 is     -0.10256889   -1.02568890E-01
+  Orbital          1   2   3   4
+  Spin coupling    1   1  -1  -1
+
+  Coefficient of CSF no.        20 is     -0.13473473   -1.34734734E-01
+  Orbital          1   2   3   4
+  Spin coupling    1  -1   1  -1
+
+ Norm of printed CI vector ..      0.99617019
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         3    0.99617019E+00      0.9961701923
+  10- 2 to 10- 1         1    0.37946310E-02      0.9999648233
+  10- 3 to 10- 2         3    0.35101560E-04      0.9999999249
+  10- 4 to 10- 3         1    0.75107291E-07      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:    7 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   11.504180     au
+@                       313.04466     eV;   2524875.6     cm-1;   30204.219     kJ / mol
+
+@ Total energy :       -22.460727     au
+
+@ Operator label: XDIPLEN ; Transition moment :  8.77354495E-02 au
+@ Oscillator strength (LENGTH)   :  5.90356858E-02  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  3.06136898E-16 au
+@ Oscillator strength (LENGTH)   :  7.18779621E-31  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -4.46491062E-16 au
+@ Oscillator strength (LENGTH)   :  1.52893823E-30  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  5.90356858E-02
+
+ Eigenvector for state no.  7
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          11                            0.9798111531        0.0000000000
+          14                           -0.1888861804        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        11 is      0.97981115    9.79811153E-01
+  Orbital          2   1   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.        14 is     -0.18888618   -1.88886180E-01
+  Orbital          3   1   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  1.0000E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99570788
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99570788E+00      0.9957078849
+  10- 2 to 10- 1         2    0.42204901E-02      0.9999283749
+  10- 3 to 10- 2         6    0.70227252E-04      0.9999986022
+  10- 4 to 10- 3         2    0.13978197E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:    8 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   11.748475     au
+@                       319.69227     eV;   2578492.2     cm-1;   30845.617     kJ / mol
+
+@ Total energy :       -22.216432     au
+
+@ Operator label: XDIPLEN ; Transition moment :  1.07278817E-02 au
+@ Oscillator strength (LENGTH)   :  9.01401331E-04  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  1.59614305E-16 au
+@ Oscillator strength (LENGTH)   :  1.99541790E-31  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  3.11192249E-17 au
+@ Oscillator strength (LENGTH)   :  7.58486375E-33  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  9.01401331E-04
+
+ Eigenvector for state no.  8
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          13                            0.9953027665        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        13 is      0.99530277    9.95302766E-01
+  Orbital          3   1   2
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99062760
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99062760E+00      0.9906275969
+  10- 2 to 10- 1         4    0.92552341E-02      0.9998828310
+  10- 3 to 10- 2         4    0.11623733E-03      0.9999990683
+  10- 4 to 10- 3         3    0.93165851E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:    9 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   11.863391     au
+@                       322.81929     eV;   2603713.3     cm-1;   31147.328     kJ / mol
+
+@ Total energy :       -22.101516     au
+
+@ Operator label: XDIPLEN ; Transition moment : -5.28242206E-16 au
+@ Oscillator strength (LENGTH)   :  2.20690571E-30  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  1.11801467E-02 au
+@ Oscillator strength (LENGTH)   :  9.88581738E-04  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -4.95720454E-17 au
+@ Oscillator strength (LENGTH)   :  1.94353005E-32  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  9.88581738E-04
+
+ Eigenvector for state no.  9
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          10                            0.1689553794        0.0000000000
+          19                            0.4019238014        0.0000000000
+          20                            0.8966544306        0.0000000000
+
+       17 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        19 is      0.40192380    4.01923801E-01
+  Orbital          1   2   3   4
+  Spin coupling    1   1  -1  -1
+
+  Coefficient of CSF no.        20 is      0.89665443    8.96654431E-01
+  Orbital          1   2   3   4
+  Spin coupling    1  -1   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.        10 is      0.16895538    1.68955379E-01
+  Orbital          2   1   3
+  Spin coupling    2   1  -1
+
+ Norm of printed CI vector ..      0.99407783
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         3    0.99407783E+00      0.9940778303
+  10- 2 to 10- 1         2    0.59078648E-02      0.9999856951
+  10- 3 to 10- 2         2    0.13775438E-04      0.9999994706
+  10- 4 to 10- 3         1    0.52943089E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:   10 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   12.075583     au
+@                       328.59332     eV;   2650284.0     cm-1;   31704.437     kJ / mol
+
+@ Total energy :       -21.889324     au
+
+@ Operator label: XDIPLEN ; Transition moment : -1.58516055E-16 au
+@ Oscillator strength (LENGTH)   :  2.02284845E-31  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -2.95292645E-03 au
+@ Oscillator strength (LENGTH)   :  7.01975725E-05  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  7.30569926E-18 au
+@ Oscillator strength (LENGTH)   :  4.29675328E-34  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  7.01975725E-05
+
+ Eigenvector for state no. 10
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          19                           -0.9083547986        0.0000000000
+          20                            0.4154711149        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        19 is     -0.90835480   -9.08354799E-01
+  Orbital          1   2   3   4
+  Spin coupling    1   1  -1  -1
+
+  Coefficient of CSF no.        20 is      0.41547111    4.15471115E-01
+  Orbital          1   2   3   4
+  Spin coupling    1  -1   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99772469
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99772469E+00      0.9977246875
+  10- 2 to 10- 1         4    0.22685729E-02      0.9999932604
+  10- 3 to 10- 2         2    0.67395538E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:   11 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   12.202117     au
+@                       332.03650     eV;   2678055.1     cm-1;   32036.654     kJ / mol
+
+@ Total energy :       -21.762790     au
+
+@ Operator label: XDIPLEN ; Transition moment :  7.37772231E-04 au
+@ Oscillator strength (LENGTH)   :  4.42780553E-06  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -2.73142704E-17 au
+@ Oscillator strength (LENGTH)   :  6.06908385E-33  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  2.42565455E-17 au
+@ Oscillator strength (LENGTH)   :  4.78632109E-33  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  4.42780553E-06
+
+ Eigenvector for state no. 11
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          16                            0.9952770029        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        16 is      0.99527700    9.95277003E-01
+  Orbital          4   1   2
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99057631
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99057631E+00      0.9905763126
+  10- 2 to 10- 1         4    0.93926139E-02      0.9999689265
+  10- 3 to 10- 2         5    0.30864918E-04      0.9999997914
+  10- 4 to 10- 3         2    0.20860737E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:   12 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   12.364420     au
+@                       336.45298     eV;   2713676.5     cm-1;   32462.780     kJ / mol
+
+@ Total energy :       -21.600487     au
+
+@ Operator label: XDIPLEN ; Transition moment : -2.16098607E-03 au
+@ Oscillator strength (LENGTH)   :  3.84934136E-05  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  2.94306537E-16 au
+@ Oscillator strength (LENGTH)   :  7.13973853E-31  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  1.17896897E-17 au
+@ Oscillator strength (LENGTH)   :  1.14574307E-33  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  3.84934136E-05
+
+ Eigenvector for state no. 12
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          11                            0.1871696674        0.0000000000
+          14                            0.9791818774        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        14 is      0.97918188    9.79181877E-01
+  Orbital          3   1   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.        11 is      0.18716967    1.87169667E-01
+  Orbital          2   1   4
+  Spin coupling    2   1  -1
+
+ Norm of printed CI vector ..      0.99382963
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99382963E+00      0.9938296335
+  10- 2 to 10- 1         4    0.61355299E-02      0.9999651633
+  10- 3 to 10- 2         4    0.34812473E-04      0.9999999758
+  10- 4 to 10- 3         1    0.24072323E-07      0.9999999999
+  10- 5 to 10- 4         1    0.11446061E-09      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:   13 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   12.596449     au
+@                       342.76681     eV;   2764600.9     cm-1;   33071.971     kJ / mol
+
+@ Total energy :       -21.368458     au
+
+@ Operator label: XDIPLEN ; Transition moment :  6.70699035E-18 au
+@ Oscillator strength (LENGTH)   :  3.77756745E-34  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -4.69809942E-04 au
+@ Oscillator strength (LENGTH)   :  1.85353705E-06  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  1.31025931E-18 au
+@ Oscillator strength (LENGTH)   :  1.44168831E-35  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  1.85353705E-06
+
+ Eigenvector for state no. 13
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          17                           -0.9951764976        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        17 is     -0.99517650   -9.95176498E-01
+  Orbital          4   1   3
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99037626
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99037626E+00      0.9903762613
+  10- 2 to 10- 1         4    0.96137330E-02      0.9999899944
+  10- 3 to 10- 2         3    0.10005639E-04      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:   14 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   25.306877     au
+@                       688.63516     eV;   5554217.5     cm-1;   66443.196     kJ / mol
+
+@ Total energy :       -8.6580294     au
+
+@ Operator label: XDIPLEN ; Transition moment : -4.64419412E-04 au
+@ Oscillator strength (LENGTH)   :  3.63888248E-06  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -2.00348553E-17 au
+@ Oscillator strength (LENGTH)   :  6.77204326E-33  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment :  2.59935965E-19 au
+@ Oscillator strength (LENGTH)   :  1.13993489E-36  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  3.63888248E-06
+
+ Eigenvector for state no. 14
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           3                           -0.9618416010        0.0000000000
+          15                           -0.2586085307        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         3 is     -0.96184160   -9.61841601E-01
+  Orbital          2   3
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.        15 is     -0.25860853   -2.58608531E-01
+  Orbital          3   2   4
+  Spin coupling    2   1  -1
+
+ Norm of printed CI vector ..      0.99201764
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99201764E+00      0.9920176375
+  10- 2 to 10- 1         3    0.79456262E-02      0.9999632637
+  10- 3 to 10- 2         4    0.36545303E-04      0.9999998090
+  10- 4 to 10- 3         3    0.19101126E-06      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:   15 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   25.412088     au
+@                       691.49809     eV;   5577308.6     cm-1;   66719.427     kJ / mol
+
+@ Total energy :       -8.5528186     au
+
+@ Operator label: XDIPLEN ; Transition moment :  3.31593914E-17 au
+@ Oscillator strength (LENGTH)   :  1.86278270E-32  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  2.59064015E-05 au
+@ Oscillator strength (LENGTH)   :  1.13700736E-08  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -1.12928884E-18 au
+@ Oscillator strength (LENGTH)   :  2.16052437E-35  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  1.13700736E-08
+
+ Eigenvector for state no. 15
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          12                           -0.9990075278        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        12 is     -0.99900753   -9.99007528E-01
+  Orbital          2   3   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99801604
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99801604E+00      0.9980160406
+  10- 2 to 10- 1         2    0.18843367E-02      0.9999003774
+  10- 3 to 10- 2         2    0.99208227E-04      0.9999995856
+  10- 4 to 10- 3         2    0.41017451E-06      0.9999999958
+  10- 5 to 10- 4         1    0.42476942E-08      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+@ Singlet transition operator label: XDIPLEN 
+@ STATE NO:   16 *TRANSITION MOMENT:  4.66707570E-04 *ENERGY(eV):   696.83466    
+@ STATE NO:   17 *TRANSITION MOMENT:  5.89515857E-05 *ENERGY(eV):   706.40690    
+@ STATE NO:   18 *TRANSITION MOMENT:  4.47122988E-18 *ENERGY(eV):   713.87176    
+@ STATE NO:   19 *TRANSITION MOMENT:  1.93753038E-05 *ENERGY(eV):   723.44955    
+
+@ Singlet transition operator label: YDIPLEN 
+@ STATE NO:   16 *TRANSITION MOMENT:  2.09764294E-17 *ENERGY(eV):   696.83466    
+@ STATE NO:   17 *TRANSITION MOMENT: -1.19919265E-18 *ENERGY(eV):   706.40690    
+@ STATE NO:   18 *TRANSITION MOMENT:  6.20494978E-05 *ENERGY(eV):   713.87176    
+@ STATE NO:   19 *TRANSITION MOMENT: -5.82411066E-17 *ENERGY(eV):   723.44955    
+
+@ Singlet transition operator label: ZDIPLEN 
+@ STATE NO:   16 *TRANSITION MOMENT: -8.18003595E-19 *ENERGY(eV):   696.83466    
+@ STATE NO:   17 *TRANSITION MOMENT: -3.10995567E-20 *ENERGY(eV):   706.40690    
+@ STATE NO:   18 *TRANSITION MOMENT: -3.19411523E-20 *ENERGY(eV):   713.87176    
+@ STATE NO:   19 *TRANSITION MOMENT: -1.87869016E-20 *ENERGY(eV):   723.44955    
+
+
+ **************************************************************************************
+ *** @ Excit. operator sym 1 & ref. state sym 1 => excited state symmetry 1  ( A  ) ***
+ **************************************************************************************
+
+
+
+ @ Excited state no:   16 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   25.608203     au
+@                       696.83466     eV;   5620350.9     cm-1;   67234.327     kJ / mol
+
+@ Total energy :       -8.3567034     au
+
+@ Operator label: XDIPLEN ; Transition moment :  4.66707570E-04 au
+@ Oscillator strength (LENGTH)   :  3.71858352E-06  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  2.09764294E-17 au
+@ Oscillator strength (LENGTH)   :  7.51192045E-33  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -8.18003595E-19 au
+@ Oscillator strength (LENGTH)   :  1.14234760E-35  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  3.71858352E-06
+
+ Eigenvector for state no. 16
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           5                           -0.9816184878        0.0000000000
+           6                            0.1707938559        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         5 is     -0.98161849   -9.81618488E-01
+  Orbital          2   4
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         6 is      0.17079386    1.70793856E-01
+  Orbital          3   4
+  Spin coupling    2   2
+
+ Norm of printed CI vector ..      0.99274540
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99274540E+00      0.9927453968
+  10- 2 to 10- 1         4    0.72355263E-02      0.9999809232
+  10- 3 to 10- 2         3    0.17706465E-04      0.9999986296
+  10- 4 to 10- 3         2    0.13684430E-05      0.9999999981
+  10- 5 to 10- 4         1    0.19242725E-08      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:   17 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   25.959977     au
+@                       706.40690     eV;   5697556.2     cm-1;   68157.908     kJ / mol
+
+@ Total energy :       -8.0049301     au
+
+@ Operator label: XDIPLEN ; Transition moment :  5.89515857E-05 au
+@ Oscillator strength (LENGTH)   :  6.01456220E-08  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -1.19919265E-18 au
+@ Oscillator strength (LENGTH)   :  2.48880546E-35  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -3.10995567E-20 au
+@ Oscillator strength (LENGTH)   :  1.67386888E-38  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  6.01456220E-08
+
+ Eigenvector for state no. 17
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           3                           -0.2536957336        0.0000000000
+          15                            0.9645082463        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        15 is      0.96450825    9.64508246E-01
+  Orbital          3   2   4
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         3 is     -0.25369573   -2.53695734E-01
+  Orbital          2   3
+  Spin coupling    2   2
+
+ Norm of printed CI vector ..      0.99463768
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99463768E+00      0.9946376825
+  10- 2 to 10- 1         3    0.53593873E-02      0.9999970698
+  10- 3 to 10- 2         1    0.24624027E-05      0.9999995322
+  10- 4 to 10- 3         5    0.46239581E-06      0.9999999946
+  10- 5 to 10- 4         1    0.54096185E-08      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ @ Excited state no:   18 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   26.234305     au
+@                       713.87176     eV;   5757764.4     cm-1;   68878.158     kJ / mol
+
+@ Total energy :       -7.7306016     au
+
+@ Operator label: XDIPLEN ; Transition moment :  4.47122988E-18 au
+@ Oscillator strength (LENGTH)   :  3.49649011E-34  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment :  6.20494978E-05 au
+@ Oscillator strength (LENGTH)   :  6.73371682E-08  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -3.19411523E-20 au
+@ Oscillator strength (LENGTH)   :  1.78434762E-38  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  6.73371682E-08
+
+ Eigenvector for state no. 18
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+          18                            0.9992033822        0.0000000000
+
+       19 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.        18 is      0.99920338    9.99203382E-01
+  Orbital          4   2   3
+  Spin coupling    2   1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+   ( no coefficients )
+
+ Norm of printed CI vector ..      0.99840740
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         1    0.99840740E+00      0.9984073989
+  10- 2 to 10- 1         3    0.15541635E-02      0.9999615625
+  10- 3 to 10- 2         1    0.37285797E-04      0.9999988483
+  10- 4 to 10- 3         3    0.11517399E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is           12
+
+
+ @ Excited state no:   19 in symmetry 1  ( A  ) - singlet excitation
+ -------------------------------------------------------------------
+
+@ Excitation energy :   26.586282     au
+@                       723.44955     eV;   5835014.5     cm-1;   69802.274     kJ / mol
+
+@ Total energy :       -7.3786243     au
+
+@ Operator label: XDIPLEN ; Transition moment :  1.93753038E-05 au
+@ Oscillator strength (LENGTH)   :  6.65370280E-09  (X-polarization)
+
+@ Operator label: YDIPLEN ; Transition moment : -5.82411066E-17 au
+@ Oscillator strength (LENGTH)   :  6.01209163E-32  (Y-polarization)
+
+@ Operator label: ZDIPLEN ; Transition moment : -1.87869016E-20 au
+@ Oscillator strength (LENGTH)   :  6.25571102E-39  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  6.65370280E-09
+
+ Eigenvector for state no. 19
+
+      Index(conf)                         Z operator          Y operator
+      ----------                      --------------      --------------
+           5                            0.1651330835        0.0000000000
+           6                            0.9833248469        0.0000000000
+
+       18 elements with absolute value ≤ 1.00D-01 are not printed.
+
+ Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
+ ===============================================================
+
+  Coefficient of CSF no.         6 is      0.98332485    9.83324847E-01
+  Orbital          3   4
+  Spin coupling    2   2
+
+ Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
+ ===============================================================
+
+  Coefficient of CSF no.         5 is      0.16513308    1.65133084E-01
+  Orbital          2   4
+  Spin coupling    2   2
+
+ Norm of printed CI vector ..      0.99419669
+
+ Magnitude of CI coefficients
+ ============================
+ ( Ranges are relative to norm of vector :  1.00E+00 )
+
+  10- 1 to 10- 0         2    0.99419669E+00      0.9941966898
+  10- 2 to 10- 1         3    0.57410202E-02      0.9999377100
+  10- 3 to 10- 2         3    0.60853078E-04      0.9999985631
+  10- 4 to 10- 3         4    0.14368923E-05      1.0000000000
+  Number of coefficients less than 10^-11 times norm is            8
+
+
+ Time used in polarization propagator calculation is      0.02 CPU seconds for symmetry 1
+
+  Total CPU  time used in RESPONSE:   0.04 seconds
+  Total wall time used in RESPONSE:   0.16 seconds
+
+
+                   .-------------------------------------------.
+                   | End of Dynamic Property Section (RESPONS) |
+                   `-------------------------------------------'
+
+  Total CPU  time used in DALTON:   0.25 seconds
+  Total wall time used in DALTON:   1.20 seconds
+
+ NOTE:    1 warnings have been issued.
+ Check output, result, and error files for "WARNING".
+
+ 
+     Date and time (Linux)  : Tue Jul  7 10:34:51 2026
+     Host name              : n-62-31-23                              
