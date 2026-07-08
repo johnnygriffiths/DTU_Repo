@@ -157,8 +157,8 @@
   Hans Agren,                  KTH Stockholm,             Sweden      (SIRIUS module, RESPONS, MC-SCRF solvation)
  --------------------------------------------------------------------------------
 
-     Date and time (Linux)  : Tue Jul  7 17:01:42 2026
-     Host name              : n-62-11-69                              
+     Date and time (Linux)  : Wed Jul  8 11:15:20 2026
+     Host name              : n-62-31-23                              
 
  * Work memory size             :   512000000 =  3.815 gigabytes.
 
@@ -228,10 +228,12 @@ Compilation information
 *LINEAR
 .THCLR
 1.0d-9
+.THCPP
+1.0d-9
 .DIPLEN
 .SINGLE RESIDUE
 .ROOTS
-300
+500
 **END OF INPUT
 
 
@@ -448,7 +450,7 @@ Calculation of 2-electron integrals are postponed until they are needed.
 
 
   Total CPU  time used in HERMIT:   0.01 seconds
-  Total wall time used in HERMIT:   0.06 seconds
+  Total wall time used in HERMIT:   0.10 seconds
 
 
                         .----------------------------------.
@@ -485,8 +487,8 @@ Calculation of 2-electron integrals are postponed until they are needed.
  **********************************************************************
 
  
-     Date and time (Linux)  : Tue Jul  7 17:01:42 2026
-     Host name              : n-62-11-69                              
+     Date and time (Linux)  : Wed Jul  8 11:15:21 2026
+     Host name              : n-62-31-23                              
 
  Title lines from ".mol" input file:
      test VQE
@@ -572,9 +574,15 @@ Calculating AOSUPINT
  HERMIT - Number of two-electron integrals written:         166 ( 40.9% )
  HERMIT - Megabytes written:                              0.137
 
+  Total CPU  time used in TWOINT:   0.00 seconds
+  Total wall time used in TWOINT:   0.12 seconds
+  CPU  time used in MAKE_AOTWOINT is   0.00 seconds
+  WALL time used in MAKE_AOTWOINT is   0.13 seconds
      (Precalculated AO two-electron integrals are transformed to P-supermatrix elements.
       Threshold for discarding integrals :  1.00D-12 )
 
+  CPU  time used in FORMSUP    is   0.00 seconds
+  WALL time used in FORMSUP    is   0.20 seconds
 @  1    -15.5145759008        6.49603D-01   -1.55D+01    1
       Virial theorem: -V/T =      1.975520
 @    MULPOP   Be      0.65; H      -0.32; H      -0.32; 
@@ -645,7 +653,7 @@ Calculating AOSUPINT
 --------------------------------------------------------------------------------
 
 
- CPU and wall time for SCF :       0.041       0.493
+ CPU and wall time for SCF :       0.062       0.756
 
 
  ----- Output from SIRIUS CI module (CICTL) -----
@@ -653,7 +661,7 @@ Calculating AOSUPINT
 
 
 
- 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.005       0.026
+ 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.006       0.072
 
  (CIST1) 8 lowest diagonal elements:
 
@@ -718,7 +726,7 @@ Lowest 1 elements are used as separate start CI vectors.
 
  Writing SIRIFC interface file for CI root no. 1
 
- CPU and wall time for CI :       0.023       0.173
+ CPU and wall time for CI :       0.028       0.274
 
 
                        .-----------------------------------.
@@ -740,8 +748,8 @@ Lowest 1 elements are used as separate start CI vectors.
 @    Final gradient norm:           0.000003520333
 
  
-     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
-     Host name              : n-62-11-69                              
+     Date and time (Linux)  : Wed Jul  8 11:15:22 2026
+     Host name              : n-62-31-23                              
 
  Occupancies of natural orbitals
  -------------------------------
@@ -762,7 +770,7 @@ Lowest 1 elements are used as separate start CI vectors.
   --- The orbital coefficients have NOT been transformed
   --- to ordered natural orbitals.
 
-File label for MO orbitals:   7Jul26    CIORB  
+File label for MO orbitals:   8Jul26    CIORB  
 
  (Only coefficients > 0.0100 are printed.)
 
@@ -830,12 +838,12 @@ File label for MO orbitals:   7Jul26    CIORB
   10- 7 to 10- 6         1    0.13906507E-13      1.0000000000
   Number of coefficients less than 10^-11 times norm is          397
 
-  Total CPU  time used in SIRIUS :   0.08 seconds
-  Total wall time used in SIRIUS :   0.92 seconds
+  Total CPU  time used in SIRIUS :   0.12 seconds
+  Total wall time used in SIRIUS :   1.17 seconds
 
  
-     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
-     Host name              : n-62-11-69                              
+     Date and time (Linux)  : Wed Jul  8 11:15:22 2026
+     Host name              : n-62-31-23                              
 
 
                      .---------------------------------------.
@@ -866,14 +874,14 @@ File label for MO orbitals:   7Jul26    CIORB
  -------------------------------------------
 
 
-    4 input options by user.
+    5 input options by user.
 
  Print level                                    : IPRPP  =   2
  Maximum number of iterations for eigenval.eqs. : MAXITP =  60
- Threshold for convergence of eigenvalue eqs.   : THCPP  = 1.000D-03
+ Threshold for convergence of eigenvalue eqs.   : THCPP  = 1.000D-09
  Maximum iterations in optimal orbital algorithm: MAXITO =   5
 
-    300 Excitation energies are calculated for symmetry no.    1
+    500 Excitation energies are calculated for symmetry no.    1
 
       3 property residues are calculated with labels:
 
@@ -883,7 +891,7 @@ File label for MO orbitals:   7Jul26    CIORB
 
  Old direct access AO file found, SORTA skipped.
 
- 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.004       0.019
+ 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.005       0.021
 
 
  CI energy            :      -15.595117565065657
@@ -901,7 +909,7 @@ File label for MO orbitals:   7Jul26    CIORB
  ----- Symmetry of excitation/property operator(s)    1  ( A  )
  ----------------------------------------------------------------
 
- Number of excitations of this symmetry          300
+ Number of excitations of this symmetry          500
  Number of response properties of this symmetry    0
  Number of C6/C8 properties of this symmetry       0
 
@@ -912,28 +920,33 @@ File label for MO orbitals:   7Jul26    CIORB
  Configuration variables.   KZCONF:         490
  Total number of variables. KZVAR :         490
 
+ ** RSPVAR ** Number of PP start vectors  500
+   exceeds the maximum number of variables  489
+   Number of start vectors reset to number of variables
+
 
 
  --- EXCITATION ENERGIES AND TRANSITION MOMENT CALCULATION (MCTDHF) ---
 
  Operator symmetry = 1  ( A  ); triplet =   F
 
+RSPORT:    1 out of   10 new trial vectors linear dependent
 
  ** RSPCTL MICROITERATION NUMBER    1
 
 
  ERROR IN RSPRED ---
- DIMENSION OF REDUCED SPACE IS    602
+ DIMENSION OF REDUCED SPACE IS    720
  WHICH EXCEEDS ALLOWED DIMENSION  600
 
   --- SEVERE ERROR, PROGRAM WILL BE ABORTED ---
-     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
-     Host name              : n-62-11-69                              
+     Date and time (Linux)  : Wed Jul  8 11:15:22 2026
+     Host name              : n-62-31-23                              
 
  Reason: RSPRED: TOO LARGE DIMENSION OF REDUCED SPACE
 
-  Total CPU  time used in DALTON:   0.32 seconds
-  Total wall time used in DALTON:   1.57 seconds
+  Total CPU  time used in DALTON:   0.44 seconds
+  Total wall time used in DALTON:   2.27 seconds
 
 
  QTRACE dump of internal trace stack
