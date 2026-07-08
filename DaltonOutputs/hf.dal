@@ -1,0 +1,19 @@
+**DALTON INPUT
+.RUN WAVE FUNCTIONS   !tipo di calcolo
+**INTEGRALS
+.DIPLEN               !integrali dell'operatore dipolo elettrico
+**WAVE FUNCTION
+.HF
+!.MP2
+!.MCSCF
+*PRINT
+!.PRINTL
+!   0 11
+*SCF INP              !parte da Hartree-Fock
+!.DOUBLY OCCUPIED
+!2 1 1 0 1 0 0 0
+!@    Total number of orbitals           30 |    8    5    5    2    5    2    2    1
+!@    Number of basis functions          30 |    8    5    5    2    5    2    2    1
+.THRESH               !soglia di convergenza
+ 1.0D-10
+**END OF DALTON INPUT

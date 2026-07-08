@@ -157,8 +157,8 @@
   Hans Agren,                  KTH Stockholm,             Sweden      (SIRIUS module, RESPONS, MC-SCRF solvation)
  --------------------------------------------------------------------------------
 
-     Date and time (Linux)  : Tue Jul  7 10:39:37 2026
-     Host name              : n-62-31-21                              
+     Date and time (Linux)  : Tue Jul  7 17:01:42 2026
+     Host name              : n-62-11-69                              
 
  * Work memory size             :   512000000 =  3.815 gigabytes.
 
@@ -448,7 +448,7 @@ Calculation of 2-electron integrals are postponed until they are needed.
 
 
   Total CPU  time used in HERMIT:   0.01 seconds
-  Total wall time used in HERMIT:   0.03 seconds
+  Total wall time used in HERMIT:   0.06 seconds
 
 
                         .----------------------------------.
@@ -485,8 +485,8 @@ Calculation of 2-electron integrals are postponed until they are needed.
  **********************************************************************
 
  
-     Date and time (Linux)  : Tue Jul  7 10:39:37 2026
-     Host name              : n-62-31-21                              
+     Date and time (Linux)  : Tue Jul  7 17:01:42 2026
+     Host name              : n-62-11-69                              
 
  Title lines from ".mol" input file:
      test VQE
@@ -645,7 +645,7 @@ Calculating AOSUPINT
 --------------------------------------------------------------------------------
 
 
- CPU and wall time for SCF :       0.060       0.356
+ CPU and wall time for SCF :       0.041       0.493
 
 
  ----- Output from SIRIUS CI module (CICTL) -----
@@ -653,7 +653,7 @@ Calculating AOSUPINT
 
 
 
- 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.007       0.043
+ 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.005       0.026
 
  (CIST1) 8 lowest diagonal elements:
 
@@ -718,7 +718,7 @@ Lowest 1 elements are used as separate start CI vectors.
 
  Writing SIRIFC interface file for CI root no. 1
 
- CPU and wall time for CI :       0.025       0.098
+ CPU and wall time for CI :       0.023       0.173
 
 
                        .-----------------------------------.
@@ -740,8 +740,8 @@ Lowest 1 elements are used as separate start CI vectors.
 @    Final gradient norm:           0.000003520333
 
  
-     Date and time (Linux)  : Tue Jul  7 10:39:38 2026
-     Host name              : n-62-31-21                              
+     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
+     Host name              : n-62-11-69                              
 
  Occupancies of natural orbitals
  -------------------------------
@@ -830,12 +830,12 @@ File label for MO orbitals:   7Jul26    CIORB
   10- 7 to 10- 6         1    0.13906507E-13      1.0000000000
   Number of coefficients less than 10^-11 times norm is          397
 
-  Total CPU  time used in SIRIUS :   0.11 seconds
-  Total wall time used in SIRIUS :   0.55 seconds
+  Total CPU  time used in SIRIUS :   0.08 seconds
+  Total wall time used in SIRIUS :   0.92 seconds
 
  
-     Date and time (Linux)  : Tue Jul  7 10:39:38 2026
-     Host name              : n-62-31-21                              
+     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
+     Host name              : n-62-11-69                              
 
 
                      .---------------------------------------.
@@ -883,7 +883,7 @@ File label for MO orbitals:   7Jul26    CIORB
 
  Old direct access AO file found, SORTA skipped.
 
- 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.005       0.017
+ 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.004       0.019
 
 
  CI energy            :      -15.595117565065657
@@ -927,13 +927,13 @@ File label for MO orbitals:   7Jul26    CIORB
  WHICH EXCEEDS ALLOWED DIMENSION  600
 
   --- SEVERE ERROR, PROGRAM WILL BE ABORTED ---
-     Date and time (Linux)  : Tue Jul  7 10:39:38 2026
-     Host name              : n-62-31-21                              
+     Date and time (Linux)  : Tue Jul  7 17:01:43 2026
+     Host name              : n-62-11-69                              
 
  Reason: RSPRED: TOO LARGE DIMENSION OF REDUCED SPACE
 
-  Total CPU  time used in DALTON:   0.33 seconds
-  Total wall time used in DALTON:   0.88 seconds
+  Total CPU  time used in DALTON:   0.32 seconds
+  Total wall time used in DALTON:   1.57 seconds
 
 
  QTRACE dump of internal trace stack

@@ -157,8 +157,8 @@
   Hans Agren,                  KTH Stockholm,             Sweden      (SIRIUS module, RESPONS, MC-SCRF solvation)
  --------------------------------------------------------------------------------
 
-     Date and time (Linux)  : Mon Jul  6 16:39:42 2026
-     Host name              : n-62-11-68                              
+     Date and time (Linux)  : Tue Jul  7 16:09:35 2026
+     Host name              : n-62-31-21                              
 
  * Work memory size             :   512000000 =  3.815 gigabytes.
 
@@ -435,7 +435,7 @@ Calculation of 2-electron integrals are postponed until they are needed.
 
 
   Total CPU  time used in HERMIT:   0.01 seconds
-  Total wall time used in HERMIT:   0.03 seconds
+  Total wall time used in HERMIT:   0.06 seconds
 
 
                         .----------------------------------.
@@ -472,8 +472,8 @@ Calculation of 2-electron integrals are postponed until they are needed.
  **********************************************************************
 
  
-     Date and time (Linux)  : Mon Jul  6 16:39:43 2026
-     Host name              : n-62-11-68                              
+     Date and time (Linux)  : Tue Jul  7 16:09:35 2026
+     Host name              : n-62-31-21                              
 
  Title lines from ".mol" input file:
      test VQE
@@ -628,7 +628,7 @@ Calculating AOSUPINT
 --------------------------------------------------------------------------------
 
 
- CPU and wall time for SCF :       0.036       0.317
+ CPU and wall time for SCF :       0.052       0.463
 
 
  ----- Output from SIRIUS CI module (CICTL) -----
@@ -636,7 +636,7 @@ Calculating AOSUPINT
 
 
 
- 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.005       0.025
+ 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.007       0.035
 
  (CIST1) 8 lowest diagonal elements:
 
@@ -697,7 +697,7 @@ Lowest 1 elements are used as separate start CI vectors.
 
  Writing SIRIFC interface file for CI root no. 1
 
- CPU and wall time for CI :       0.013       0.121
+ CPU and wall time for CI :       0.018       0.101
 
 
                        .-----------------------------------.
@@ -719,8 +719,8 @@ Lowest 1 elements are used as separate start CI vectors.
 @    Final gradient norm:           0.000003254708
 
  
-     Date and time (Linux)  : Mon Jul  6 16:39:43 2026
-     Host name              : n-62-11-68                              
+     Date and time (Linux)  : Tue Jul  7 16:09:36 2026
+     Host name              : n-62-31-21                              
 
  Occupancies of natural orbitals
  -------------------------------
@@ -741,7 +741,7 @@ Lowest 1 elements are used as separate start CI vectors.
   --- The orbital coefficients have NOT been transformed
   --- to ordered natural orbitals.
 
-File label for MO orbitals:   6Jul26    CIORB  
+File label for MO orbitals:   7Jul26    CIORB  
 
  (Only coefficients > 0.0100 are printed.)
 
@@ -797,12 +797,12 @@ File label for MO orbitals:   6Jul26    CIORB
   10- 5 to 10- 4         5    0.20307511E-07      1.0000000000
   Number of coefficients less than 10^-11 times norm is           64
 
-  Total CPU  time used in SIRIUS :   0.07 seconds
-  Total wall time used in SIRIUS :   0.66 seconds
+  Total CPU  time used in SIRIUS :   0.09 seconds
+  Total wall time used in SIRIUS :   0.74 seconds
 
  
-     Date and time (Linux)  : Mon Jul  6 16:39:44 2026
-     Host name              : n-62-11-68                              
+     Date and time (Linux)  : Tue Jul  7 16:09:36 2026
+     Host name              : n-62-31-21                              
 
 
                      .---------------------------------------.
@@ -850,7 +850,7 @@ File label for MO orbitals:   6Jul26    CIORB
 
  Old direct access AO file found, SORTA skipped.
 
- 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.004       0.014
+ 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.004       0.016
 
 
  CI energy            :       -7.882401933917298
@@ -9304,22 +9304,22 @@ RSPORT:    1 out of  105 new trial vectors linear dependent
   Number of coefficients less than 10^-11 times norm is           64
 
 
- Time used in polarization propagator calculation is      0.11 CPU seconds for symmetry 1
+ Time used in polarization propagator calculation is      0.12 CPU seconds for symmetry 1
 
-  Total CPU  time used in RESPONSE:   0.13 seconds
-  Total wall time used in RESPONSE:   0.56 seconds
+  Total CPU  time used in RESPONSE:   0.15 seconds
+  Total wall time used in RESPONSE:   0.40 seconds
 
 
                    .-------------------------------------------.
                    | End of Dynamic Property Section (RESPONS) |
                    `-------------------------------------------'
 
-  Total CPU  time used in DALTON:   0.24 seconds
-  Total wall time used in DALTON:   1.59 seconds
+  Total CPU  time used in DALTON:   0.27 seconds
+  Total wall time used in DALTON:   1.38 seconds
 
  NOTE:    1 warnings have been issued.
  Check output, result, and error files for "WARNING".
 
  
-     Date and time (Linux)  : Mon Jul  6 16:39:44 2026
-     Host name              : n-62-11-68                              
+     Date and time (Linux)  : Tue Jul  7 16:09:36 2026
+     Host name              : n-62-31-21                              

@@ -1,0 +1,10 @@
+BASIS 
+cc-pVDZ
+test VQE
+dalton test
+Atomtypes=2 Angstrom Nosymmetry  
+Charge=4.0 Atoms=1 
+Be    0.0000000000000000  0.0000000000000000  0.0
+Charge=1.0 Atoms=2
+H     1.3300000000000000  0.0000000000000000  0.0
+H    -1.3300000000000000  0.0000000000000000  0.0

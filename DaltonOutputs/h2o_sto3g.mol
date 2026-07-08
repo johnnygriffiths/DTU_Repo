@@ -1,0 +1,10 @@
+BASIS 
+STO-3G
+test VQE
+dalton test
+Atomtypes=2 Angstrom Nosymmetry  
+Charge=8.0 Atoms=1 
+O     0.1035000000000000  0.0000000000000000  0.0
+Charge=1.0 Atoms=2
+H    -0.4640000000000000  0.7956000000000000  0.0
+H    -0.4640000000000000  -0.7956000000000000  0.0

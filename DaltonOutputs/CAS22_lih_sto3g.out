@@ -157,8 +157,8 @@
   Hans Agren,                  KTH Stockholm,             Sweden      (SIRIUS module, RESPONS, MC-SCRF solvation)
  --------------------------------------------------------------------------------
 
-     Date and time (Linux)  : Tue Jul  7 11:27:34 2026
-     Host name              : n-62-31-5                               
+     Date and time (Linux)  : Tue Jul  7 16:01:16 2026
+     Host name              : n-62-31-23                              
 
  * Work memory size             :   512000000 =  3.815 gigabytes.
 
@@ -219,7 +219,7 @@ Compilation information
 .SYMMETRY
 1
 .INACTIVE ORBITALS !the inner electrons are kept frozen
-0
+1
 .CAS SPACE
 2
 .ELECTRONS
@@ -435,7 +435,7 @@ Calculation of 2-electron integrals are postponed until they are needed.
 
 
   Total CPU  time used in HERMIT:   0.01 seconds
-  Total wall time used in HERMIT:   0.03 seconds
+  Total wall time used in HERMIT:   0.14 seconds
 
 
                         .----------------------------------.
@@ -472,8 +472,8 @@ Calculation of 2-electron integrals are postponed until they are needed.
  **********************************************************************
 
  
-     Date and time (Linux)  : Tue Jul  7 11:27:34 2026
-     Host name              : n-62-31-5                               
+     Date and time (Linux)  : Tue Jul  7 16:01:16 2026
+     Host name              : n-62-31-23                              
 
  Title lines from ".mol" input file:
      test VQE
@@ -499,9 +499,9 @@ Calculation of 2-electron integrals are postponed until they are needed.
      Wave function specification
      ============================
 @    Wave function type        --- CI ---
-@    Number of closed shell electrons           0
+@    Number of closed shell electrons           2
 @    Number of electrons in active shells       2
-@    Total charge of the molecule               2
+@    Total charge of the molecule               0
 
 @    Spin multiplicity and 2 M_S                1         0
 @    Total number of symmetries                 1 (point group: C1 )
@@ -512,9 +512,9 @@ Calculation of 2-electron integrals are postponed until they are needed.
 @    Abelian symmetry species          All |    1
 @                                          |  A  
                                        --- |  ---
-@    Inactive orbitals                   0 |    0
+@    Inactive orbitals                   1 |    1
 @    Active orbitals                     2 |    2
-@    Secondary orbitals                  4 |    4
+@    Secondary orbitals                  3 |    3
 @    Total number of orbitals            6 |    6
 @    Number of basis functions           6 |    6
 
@@ -628,7 +628,7 @@ Calculating AOSUPINT
 --------------------------------------------------------------------------------
 
 
- CPU and wall time for SCF :       0.057       0.370
+ CPU and wall time for SCF :       0.052       0.316
 
 
  ----- Output from SIRIUS CI module (CICTL) -----
@@ -636,15 +636,15 @@ Calculating AOSUPINT
 
 
 
- 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.008       0.091
+ 2-el. integral transformation level 0: Total CPU and WALL times (sec)       0.007       0.078
 
  (CIST1) 3 lowest diagonal elements:
 
  Element no. Config.no.    Active energy      Total energy
 
-         1 :          1     -7.7982911879     -6.8029735500
-         2 :          3     -5.8556886927     -4.8603710548
-         3 :          2     -2.5014970444     -1.5061794065
+         1 :          1     -1.0590503122     -7.8620238622
+         2 :          3     -0.9058322175     -7.7088057675
+         3 :          2     -0.3745274177     -7.1775009677
 
 Lowest 1 elements are used as separate start CI vectors.
 
@@ -654,15 +654,15 @@ Lowest 1 elements are used as separate start CI vectors.
 
  CI root     eigenvalue        residual norm
 
-    1       -6.8029735500        0.0160564272
+    1       -7.8620238622        0.0130139604
 
  CI root     eigenvalue        residual norm
 
-    1       -6.8030512863        0.0001353705
+    1       -7.8622711907        0.0015025018
 
  CI root     eigenvalue        residual norm
 
-    1       -6.8030512910        0.0000000000 converged
+    1       -7.8622855360        0.0000000000 converged
 
  The requested root number is now converged.
 
@@ -672,11 +672,11 @@ Lowest 1 elements are used as separate start CI vectors.
 
 
 @ Final CI energies and residuals in symmetry 1 (irrep A  )
-@    1       -6.803051290953051       2.29D-14
+@    1       -7.862285535958242       9.32D-16
 
  Writing SIRIFC interface file for CI root no. 1
 
- CPU and wall time for CI :       0.014       0.155
+ CPU and wall time for CI :       0.014       0.157
 
 
                        .-----------------------------------.
@@ -686,32 +686,32 @@ Lowest 1 elements are used as separate start CI vectors.
 
 @    Spin multiplicity:           1
 @    Spatial symmetry:            1 ( irrep  A   in C1  )
-@    Total charge of molecule:    2
+@    Total charge of molecule:    0
 
 @    This was a CI calculation.
 @    State number:                1
 
-@    Final CI energy:              -6.803051290953
+@    Final CI energy:              -7.862285535958
 @    Nuclear repulsion:             0.995317637868
-@    Electronic energy:            -7.798368928821
+@    Electronic energy:            -8.857603173827
 
 @    Final gradient norm:           0.000000000000
 
  
-     Date and time (Linux)  : Tue Jul  7 11:27:35 2026
-     Host name              : n-62-31-5                               
+     Date and time (Linux)  : Tue Jul  7 16:01:17 2026
+     Host name              : n-62-31-23                              
 
  Occupancies of natural orbitals
  -------------------------------
 
- Symmetry 1  ( A  ) -- Total occupation in this symmetry is   2.000000000
+ Symmetry 1  ( A  ) -- Total occupation in this symmetry is   4.000000000
 
-   1.999985613   0.000014387
+   2.000000000   1.999188208   0.000811792
 
   Effective numbers of unpaired electrons this symmetry Eqs. 1) and 2):  0.00  0.00
 
   Total effective number of unpaired electrons :
-  Eq. 1) sum(i) [(2 - n_i) n_i]    =  0.0001
+  Eq. 1) sum(i) [(2 - n_i) n_i]    =  0.0032
   Eq. 2) sum(i) [(2 - n_i) n_i]**2 =  0.0000
  (Reference: M. Head-Gordon, Chemical Physics Letters 372 (2003) 508-511)
 
@@ -740,7 +740,7 @@ File label for MO orbitals:   7Jul26    CIORB
  Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
  ===============================================================
 
-  Coefficient of CSF no.         1 is      0.99998520    9.99985196E-01
+  Coefficient of CSF no.         1 is      0.99975235    9.99752346E-01
   Orbital          1
   Spin coupling    2
 
@@ -752,22 +752,23 @@ File label for MO orbitals:   7Jul26    CIORB
  ===============================================================
    ( no coefficients )
 
- Norm of printed CI vector ..      0.99997039
+ Norm of printed CI vector ..      0.99950475
 
  Magnitude of CI coefficients
  ============================
  ( Ranges are relative to norm of vector :  1.00E+00 )
 
-  10- 1 to 10- 0         1    0.99997039E+00      0.9999703916
-  10- 3 to 10- 2         2    0.29608379E-04      1.0000000000
+  10- 1 to 10- 0         1    0.99950475E+00      0.9995047543
+  10- 2 to 10- 1         1    0.40409753E-03      0.9999088518
+  10- 3 to 10- 2         1    0.91148182E-04      1.0000000000
   Number of coefficients less than 10^-11 times norm is            0
 
   Total CPU  time used in SIRIUS :   0.09 seconds
-  Total wall time used in SIRIUS :   0.61 seconds
+  Total wall time used in SIRIUS :   0.56 seconds
 
  
-     Date and time (Linux)  : Tue Jul  7 11:27:35 2026
-     Host name              : n-62-31-5                               
+     Date and time (Linux)  : Tue Jul  7 16:01:17 2026
+     Host name              : n-62-31-23                              
 
 
                      .---------------------------------------.
@@ -815,12 +816,12 @@ File label for MO orbitals:   7Jul26    CIORB
 
  Old direct access AO file found, SORTA skipped.
 
- 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.005       0.158
+ 2-el. integral transformation level 4: Total CPU and WALL times (sec)       0.005       0.136
 
 
- CI energy            :       -6.803051290953051
- -- inactive part     :        0.995317637868339
- --   active part     :       -7.798368928821390
+ CI energy            :       -7.862285535958242
+ -- inactive part     :       -6.802973550028820
+ --   active part     :       -1.059311985929423
  -- nuclear repulsion :        0.995317637868339
 
 
@@ -860,31 +861,31 @@ RSPORT:    1 out of    3 new trial vectors linear dependent
 
       Root  Residual tot.,    conf., and orb.    Bnorm      Eigenvalue
       ----------------------------------------------------------------
-         1    2.37463D-16  2.37D-16  0.00D+00  1.00D+00    1.94864D+00
-         2    1.09524D-15  1.10D-15  0.00D+00  1.00D+00    5.30439D+00
-         3    2.37463D-16  2.37D-16  0.00D+00  1.00D+00   -1.94864D+00
+         1    2.13342D-16  2.13D-16  0.00D+00  1.00D+00    1.54722D-01
+         2    3.72322D-15  3.72D-15  0.00D+00  1.00D+00    6.96818D-01
+         3    2.13342D-16  2.13D-16  0.00D+00  1.00D+00   -1.54722D-01
 
  *** THE REQUESTED    2 SOLUTION VECTORS CONVERGED
 
  Convergence of RSP solution vectors, threshold = 1.00D-03
  ---------------------------------------------------------------
  (dimension of paired reduced space:    4)
- RSP solution vector no.    1; norm of residual   2.37D-16
- RSP solution vector no.    2; norm of residual   1.10D-15
+ RSP solution vector no.    1; norm of residual   2.13D-16
+ RSP solution vector no.    2; norm of residual   3.72D-15
 
  *** RSPCTL MICROITERATIONS CONVERGED
 
 @ Singlet transition operator label: XDIPLEN 
-@ STATE NO:    1 *TRANSITION MOMENT: -0.16608722     *ENERGY(eV):   53.025143    
-@ STATE NO:    2 *TRANSITION MOMENT: -4.60432000E-03 *ENERGY(eV):   144.33975    
+@ STATE NO:    1 *TRANSITION MOMENT: -0.65233822     *ENERGY(eV):   4.2102050    
+@ STATE NO:    2 *TRANSITION MOMENT:  6.32121960E-02 *ENERGY(eV):   18.961376    
 
 @ Singlet transition operator label: YDIPLEN 
-@ STATE NO:    1 *TRANSITION MOMENT: -1.28028584E-16 *ENERGY(eV):   53.025143    
-@ STATE NO:    2 *TRANSITION MOMENT:  5.05298225E-18 *ENERGY(eV):   144.33975    
+@ STATE NO:    1 *TRANSITION MOMENT:  2.76733944E-15 *ENERGY(eV):   4.2102050    
+@ STATE NO:    2 *TRANSITION MOMENT:  2.54735720E-16 *ENERGY(eV):   18.961376    
 
 @ Singlet transition operator label: ZDIPLEN 
-@ STATE NO:    1 *TRANSITION MOMENT: -3.19319642E-17 *ENERGY(eV):   53.025143    
-@ STATE NO:    2 *TRANSITION MOMENT:  2.49009261E-18 *ENERGY(eV):   144.33975    
+@ STATE NO:    1 *TRANSITION MOMENT: -1.41682204E-15 *ENERGY(eV):   4.2102050    
+@ STATE NO:    2 *TRANSITION MOMENT: -1.27207579E-16 *ENERGY(eV):   18.961376    
 
 
  **************************************************************************************
@@ -896,117 +897,127 @@ RSPORT:    1 out of    3 new trial vectors linear dependent
  @ Excited state no:    1 in symmetry 1  ( A  ) - singlet excitation
  -------------------------------------------------------------------
 
-@ Excitation energy :   1.9486382     au
-@                       53.025143     eV;   427676.65     cm-1;   5116.1488     kJ / mol
+@ Excitation energy :  0.15472219     au
+@                       4.2102050     eV;   33957.596     cm-1;   406.22305     kJ / mol
 
-@ Total energy :       -4.8544131     au
+@ Total energy :       -7.7075633     au
 
-@ Operator label: XDIPLEN ; Transition moment : -0.16608722     au
-@ Oscillator strength (LENGTH)   :  3.58354094E-02  (X-polarization)
+@ Operator label: XDIPLEN ; Transition moment : -0.65233822     au
+@ Oscillator strength (LENGTH)   :  4.38941860E-02  (X-polarization)
 
-@ Operator label: YDIPLEN ; Transition moment : -1.28028584E-16 au
-@ Oscillator strength (LENGTH)   :  2.12938327E-32  (Y-polarization)
+@ Operator label: YDIPLEN ; Transition moment :  2.76733944E-15 au
+@ Oscillator strength (LENGTH)   :  7.89925649E-31  (Y-polarization)
 
-@ Operator label: ZDIPLEN ; Transition moment : -3.19319642E-17 au
-@ Oscillator strength (LENGTH)   :  1.32461973E-33  (Z-polarization)
-@ Total oscillator strength (LENGTH)   :  3.58354094E-02
+@ Operator label: ZDIPLEN ; Transition moment : -1.41682204E-15 au
+@ Oscillator strength (LENGTH)   :  2.07057975E-31  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  4.38941860E-02
 
  Eigenvector for state no.  1
 
       Index(conf)                         Z operator          Y operator
       ----------                      --------------      --------------
-           3                            0.9988732256        0.0000000000
+           2                           -0.1472350063        0.0000000000
+           3                           -0.9890237431        0.0000000000
 
-        2 elements with absolute value ≤ 1.00D-01 are not printed.
+        1 elements with absolute value ≤ 1.00D-01 are not printed.
 
  Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
  ===============================================================
 
-  Coefficient of CSF no.         3 is      0.99887323    9.98873226E-01
+  Coefficient of CSF no.         3 is     -0.98902374   -9.89023743E-01
   Orbital          1   2
   Spin coupling    1  -1
 
  Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
  ===============================================================
-   ( no coefficients )
 
- Norm of printed CI vector ..      0.99774772
+  Coefficient of CSF no.         2 is     -0.14723501   -1.47235006E-01
+  Orbital          2
+  Spin coupling    2
+
+ Norm of printed CI vector ..      0.99984611
 
  Magnitude of CI coefficients
  ============================
  ( Ranges are relative to norm of vector :  1.00E+00 )
 
-  10- 1 to 10- 0         1    0.99774772E+00      0.9977477208
-  10- 2 to 10- 1         1    0.22286441E-02      0.9999763649
-  10- 3 to 10- 2         1    0.23635079E-04      1.0000000000
+  10- 1 to 10- 0         2    0.99984611E+00      0.9998461115
+  10- 2 to 10- 1         1    0.15388849E-03      1.0000000000
   Number of coefficients less than 10^-11 times norm is            0
 
 
  @ Excited state no:    2 in symmetry 1  ( A  ) - singlet excitation
  -------------------------------------------------------------------
 
-@ Excitation energy :   5.3043885     au
-@                       144.33975     eV;   1164178.7     cm-1;   13926.670     kJ / mol
+@ Excitation energy :  0.69681778     au
+@                       18.961376     eV;   152933.82     cm-1;   1829.4948     kJ / mol
 
-@ Total energy :       -1.4986628     au
+@ Total energy :       -7.1654678     au
 
-@ Operator label: XDIPLEN ; Transition moment : -4.60432000E-03 au
-@ Oscillator strength (LENGTH)   :  7.49678514E-05  (X-polarization)
+@ Operator label: XDIPLEN ; Transition moment :  6.32121960E-02 au
+@ Oscillator strength (LENGTH)   :  1.85622117E-03  (X-polarization)
 
-@ Operator label: YDIPLEN ; Transition moment :  5.05298225E-18 au
-@ Oscillator strength (LENGTH)   :  9.02899914E-35  (Y-polarization)
+@ Operator label: YDIPLEN ; Transition moment :  2.54735720E-16 au
+@ Oscillator strength (LENGTH)   :  3.01444704E-32  (Y-polarization)
 
-@ Operator label: ZDIPLEN ; Transition moment :  2.49009261E-18 au
-@ Oscillator strength (LENGTH)   :  2.19267904E-35  (Z-polarization)
-@ Total oscillator strength (LENGTH)   :  7.49678514E-05
+@ Operator label: ZDIPLEN ; Transition moment : -1.27207579E-16 au
+@ Oscillator strength (LENGTH)   :  7.51716253E-33  (Z-polarization)
+@ Total oscillator strength (LENGTH)   :  1.85622117E-03
 
  Eigenvector for state no.  2
 
       Index(conf)                         Z operator          Y operator
       ----------                      --------------      --------------
-           2                            0.9988814857        0.0000000000
+           2                            0.9888972421        0.0000000000
+           3                           -0.1474479142        0.0000000000
 
-        2 elements with absolute value ≤ 1.00D-01 are not printed.
+        1 elements with absolute value ≤ 1.00D-01 are not printed.
 
  Printout of coefficients in interval  3.1623E-01 to  1.0000E+00
  ===============================================================
 
-  Coefficient of CSF no.         2 is      0.99888149    9.98881486E-01
+  Coefficient of CSF no.         2 is      0.98889724    9.88897242E-01
   Orbital          2
   Spin coupling    2
 
  Printout of coefficients in interval  1.0000E-01 to  3.1623E-01
  ===============================================================
+
+  Coefficient of CSF no.         3 is     -0.14744791   -1.47447914E-01
+  Orbital          1   2
+  Spin coupling    1  -1
+
+ Printout of coefficients in interval  1.0000E-01 to  1.0000E-01
+ ===============================================================
    ( no coefficients )
 
- Norm of printed CI vector ..      0.99776422
+ Norm of printed CI vector ..      0.99965864
 
  Magnitude of CI coefficients
  ============================
  ( Ranges are relative to norm of vector :  1.00E+00 )
 
-  10- 1 to 10- 0         1    0.99776422E+00      0.9977642224
-  10- 2 to 10- 1         1    0.22298043E-02      0.9999940267
-  10- 3 to 10- 2         1    0.59733006E-05      1.0000000000
+  10- 1 to 10- 0         2    0.99965864E+00      0.9996586428
+  10- 2 to 10- 1         1    0.34135722E-03      1.0000000000
   Number of coefficients less than 10^-11 times norm is            0
 
 
  Time used in polarization propagator calculation is      0.01 CPU seconds for symmetry 1
 
-  Total CPU  time used in RESPONSE:   0.01 seconds
-  Total wall time used in RESPONSE:   0.20 seconds
+  Total CPU  time used in RESPONSE:   0.02 seconds
+  Total wall time used in RESPONSE:   0.18 seconds
 
 
                    .-------------------------------------------.
                    | End of Dynamic Property Section (RESPONS) |
                    `-------------------------------------------'
 
-  Total CPU  time used in DALTON:   0.14 seconds
-  Total wall time used in DALTON:   1.01 seconds
+  Total CPU  time used in DALTON:   0.13 seconds
+  Total wall time used in DALTON:   1.21 seconds
 
  NOTE:    1 warnings have been issued.
  Check output, result, and error files for "WARNING".
 
  
-     Date and time (Linux)  : Tue Jul  7 11:27:35 2026
-     Host name              : n-62-31-5                               
+     Date and time (Linux)  : Tue Jul  7 16:01:17 2026
+     Host name              : n-62-31-23                              
