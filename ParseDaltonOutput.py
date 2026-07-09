@@ -41,20 +41,20 @@ def CASCISimData(FilePath: str) -> pd.DataFrame:
     for OscStrLine in OscStrLines:
         match = re.search(OscStrPattern, OscStrLine)
         if match:
-            OscStrData.append(float(match.group('OscStr'))
+            OscStrData.append(float(match.group('OscStr')) #if want specific d.p then ('%f%' % float(..))
             )
-    print(len(EnergData))
-    print(len(OscStrData))
     #Store in dataframe
     SimDataDF = pd.DataFrame({"Excitation energy (eV)": EnergData,"Total oscillator strength": OscStrData})
 
     return SimDataDF
 
-
-FilePath = "./DaltonOutputs/CAS44_beh2_pvdz.out"
+ActiveSpace = "107"
+System = "h2o"
+BasisSet = "pvdz"
+FileName = f"CAS{ActiveSpace}_{System}_{BasisSet}"
+FilePath = f"./DaltonOutputs/{FileName}.out"
 
 CASCISimEnergiesDF = CASCISimData(FilePath)
 # The index count is the same as the root set in the Dalton file, i.e the number of excited states
 CASCISimEnergiesDF.index +=1
-print("Taken from:", FilePath)
-print(CASCISimEnergiesDF)
+CASCISimEnergiesDF.to_latex(f"./FilteredOutput/{System}/{FileName}.tex", index=False, longtable=True)
